@@ -1,0 +1,1268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="abc_action_bar_home_description">Navigate home</string>
+    <string name="abc_action_bar_home_description_format">%1$s, %2$s</string>
+    <string name="abc_action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
+    <string name="abc_action_bar_up_description">Navigate up</string>
+    <string name="abc_action_menu_overflow_description">More options</string>
+    <string name="abc_action_mode_done">Done</string>
+    <string name="abc_activity_chooser_view_see_all">See all</string>
+    <string name="abc_activitychooserview_choose_application">Choose an app</string>
+    <string name="abc_capital_off">OFF</string>
+    <string name="abc_capital_on">ON</string>
+    <string name="abc_search_hint">Search…</string>
+    <string name="abc_searchview_description_clear">Clear query</string>
+    <string name="abc_searchview_description_query">Search query</string>
+    <string name="abc_searchview_description_search">Search</string>
+    <string name="abc_searchview_description_submit">Submit query</string>
+    <string name="abc_searchview_description_voice">Voice search</string>
+    <string name="abc_shareactionprovider_share_with">Share with</string>
+    <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
+    <string name="abc_toolbar_collapse_description">Collapse</string>
+    <string name="common_google_play_services_enable_button">Enable</string>
+    <string name="common_google_play_services_enable_text">"%1$s won't work unless you enable Google Play services."</string>
+    <string name="common_google_play_services_enable_title">Enable Google Play services</string>
+    <string name="common_google_play_services_install_button">Install</string>
+    <string name="common_google_play_services_install_text">"%1$s won't run without Google Play services, which are missing from your device."</string>
+    <string name="common_google_play_services_install_title">Get Google Play services</string>
+    <string name="common_google_play_services_notification_ticker">Google Play services error</string>
+    <string name="common_google_play_services_unknown_issue">%1$s is having trouble with Google Play services. Please try again.</string>
+    <string name="common_google_play_services_unsupported_text">"%1$s won't run without Google Play services, which are not supported by your device."</string>
+    <string name="common_google_play_services_update_button">Update</string>
+    <string name="common_google_play_services_update_text">"%1$s won't run unless you update Google Play services."</string>
+    <string name="common_google_play_services_update_title">Update Google Play services</string>
+    <string name="common_google_play_services_updating_text">"%1$s won't run without Google Play services, which are currently updating."</string>
+    <string name="common_google_play_services_wear_update_text">New version of Google Play services needed. It will update itself shortly.</string>
+    <string name="common_open_on_phone">Open on phone</string>
+    <string name="common_signin_button_text">Sign in</string>
+    <string name="common_signin_button_text_long">Sign in with Google</string>
+    <string name="search_menu_title">Search</string>
+    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="alert_bootloader_subtitle">Danfoss Eco™ update required</string>
+    <string name="alert_bootloader_title">Critical error</string>
+    <string name="alert_idle_subtitle">You have been disconnected due to inactivity</string>
+    <string name="alert_idle_title">Disconnected</string>
+    <string name="alerts_app_update_subtitle">To connect to this Danfoss Eco™ this app must be updated</string>
+    <string name="alerts_app_update_title">New firmware version</string>
+    <string name="alerts_e10_subtitle">You have recently replaced battery and lost time synchronization</string>
+    <string name="alerts_e10_title">Invalid clock information</string>
+    <string name="alerts_e11_subtitle">Contact dealer</string>
+    <string name="alerts_e11_title">E11 Error</string>
+    <string name="alerts_e12_subtitle">Contact dealer</string>
+    <string name="alerts_e12_title">Radio communication error</string>
+    <string name="alerts_e13_subtitle">Contact dealer</string>
+    <string name="alerts_e13_title">Encoder jammed</string>
+    <string name="alerts_e14_subtitle">The device will soon run out of batteries, replace immediately</string>
+    <string name="alerts_e14_title">Low battery</string>
+    <string name="alerts_e15_subtitle">Batteries Empty, Replace immediately. The valve is opened to prevent frost damages to the system</string>
+    <string name="alerts_e15_title">Critical low battery</string>
+    <string name="alerts_e1_subtitle">Front temperature sensor damaged, contact dealer</string>
+    <string name="alerts_e1_title">Sensor error</string>
+    <string name="alerts_e2_subtitle">Valve or center temperature sensor damaged, contact dealer</string>
+    <string name="alerts_e2_title">Sensor error</string>
+    <string name="alerts_e3_subtitle">Device faulty, contact dealer</string>
+    <string name="alerts_e3_title">Memory error</string>
+    <string name="alerts_e4_subtitle">Device faulty, contact dealer</string>
+    <string name="alerts_e4_title">Hardware error</string>
+    <string name="alerts_e5_subtitle">Contact dealer</string>
+    <string name="alerts_e5_title">E5 Error</string>
+    <string name="alerts_e6_subtitle">Motor jammed, try reset and re-mount, if the error persists contact dealer</string>
+    <string name="alerts_e6_title">Motor error</string>
+    <string name="alerts_e7_subtitle">Contact dealer</string>
+    <string name="alerts_e7_title">Communication module error</string>
+    <string name="alerts_e8_subtitle">Contact dealer</string>
+    <string name="alerts_e8_title">Invalid communication</string>
+    <string name="alerts_e9_subtitle">The valve the thermostat is installed on cannot close correctly, please check the installation</string>
+    <string name="alerts_e9_title">Valve not able to close</string>
+    <string name="alerts_firmware_available_subtitle">Upgrade now</string>
+    <string name="alerts_firmware_available_title">New Danfoss Eco™ firmware</string>
+    <string name="alerts_generic_text">Something went wrong</string>
+    <string name="alerts_lost_connection_subtitle">See Help for troubleshooting</string>
+    <string name="alerts_lost_connection_title">Lost connection</string>
+    <string name="alerts_new_name_subtitle">Another user has updated this Danfoss Eco™</string>
+    <string name="alerts_new_name_title">New name</string>
+    <string name="alerts_not_installed_subtitle">Eco is ready to be mounted on radiator</string>
+    <string name="alerts_not_installed_title">Not installed</string>
+    <string name="alerts_pause_enabled_subtitle">Eco is in frost protection mode</string>
+    <string name="alerts_pause_enabled_title">Pause</string>
+    <string name="alerts_temporary_setpoint_subtitle">Lasts until next scheduled change</string>
+    <string name="alerts_temporary_setpoint_title">Temporary setpoint</string>
+    <string name="alerts_weak_connection_subtitle">Move close to the thermostat</string>
+    <string name="alerts_weak_connection_title">Weak connection</string>
+    <string name="app_name">Danfoss Eco™</string>
+    <string name="app_rating_button_rate_later">Remind me later</string>
+    <string name="app_rating_button_rate_never">No, thanks</string>
+    <string name="app_rating_button_rate_now">Rate now</string>
+    <string name="app_rating_message">If you enjoy using Danfoss Eco™, please take a moment to rate it. Thanks in advance.</string>
+    <string name="app_rating_title">Rate Danfoss Eco™</string>
+    <string name="appversion">App version</string>
+    <string name="at_home.activate_at_home">At Home?</string>
+    <string name="at_home.activate_choose_rooms">Choose Rooms</string>
+    <string name="at_home.activate_confirmation_title_begin_now">Begin the heating period now</string>
+    <string name="at_home.activate_confirmation_title_prolong">Prolong the heating period</string>
+    <string name="at_home.activate_living_zone">Living Zone</string>
+    <string name="at_home.deactivate_at_home">Heating Shedule?</string>
+    <string name="at_home.deactivate_confirmation_tagline">"End prolonged heating period and
+switch to scheduled heating"</string>
+    <string name="autoupdatesoftware">Auto update software</string>
+    <string name="back">Back</string>
+    <string name="bluetooth_cancel_button">Cancel</string>
+    <string name="bluetooth_phone_settings_button">Settings</string>
+    <string name="bluetooth_subtitle">Turn on bluetooth on your phone to connect to Danfoss Eco™</string>
+    <string name="bluetooth_title">Bluetooth</string>
+    <string name="brandingtype">Branding type</string>
+    <string name="cancel">Cancel</string>
+    <string name="choose_preferred_temperatures">Choose preferred temperatures for the heating schedule</string>
+    <string name="clear">Clear</string>
+    <string name="common_back">Back</string>
+    <string name="common_close">Close</string>
+    <string name="common_launch_app">Launch App</string>
+    <string name="common_next">Next</string>
+    <string name="common_no">No</string>
+    <string name="common_not_connected">Not connected</string>
+    <string name="common_ok">OK</string>
+    <string name="common_yes">Yes</string>
+    <string name="communication">Communication</string>
+    <string name="communication.incoming">Incoming</string>
+    <string name="communication.outgoing">Outgoing</string>
+    <string name="connect_battery_change_description">"Do you want to switch on
+schedule mode on
+\"%1$s\""</string>
+    <string name="connect_battery_change_title">Time and date on Danfoss Eco™ has been synchronized</string>
+    <string name="connect_flow_enter_pin">"This Danfoss Eco™ is locked
+ Enter PIN Code"</string>
+    <string name="connect_flow_reuse_schedule_subtitle">Apply the weekly schedule from</string>
+    <string name="connect_flow_reuse_schedule_title">Reuse schedule?</string>
+    <string name="connect_flow_reuse_settings_subtitle">Apply the settings from</string>
+    <string name="connect_flow_reuse_settings_title">Reuse settings?</string>
+    <string name="connect_flow_reuse_vacation_subtitle">Apply the vacation from</string>
+    <string name="connect_flow_reuse_vacation_title">Reuse vacation?</string>
+    <string name="connect_flow_schedule_no">Not yet</string>
+    <string name="connect_flow_schedule_subtitle">Tip: You can switch mode on the Danfoss Eco™ button</string>
+    <string name="connect_flow_schedule_title">Schedule?</string>
+    <string name="connect_flow_schedule_yes">Use schedule</string>
+    <string name="connectedpeers">connectedPeers</string>
+    <string name="connection_lost_heading">Connection lost</string>
+    <string name="connection_lost_press_for_more_info">Click for more information</string>
+    <string name="copy">Copy</string>
+    <string name="delete">Delete</string>
+    <string name="demohouse">Demo Mode</string>
+    <string name="edit">Edit</string>
+    <string name="eula">"Danfoss Eco™ App - End User License Agreement and Disclaimer
+
+
+1. License
+This end user license agreement and disclaimer (“Agreement”) is entered into between Danfoss A/S or its Affiliates (each of which is referred to as “Danfoss”) and you as an end user (“You” or “User”). In this Agreement “Affiliate” shall mean an entity directly or indirectly controlled by Danfoss A/S whether by shares or voting rights.
+
+Upon acceptance of this Agreement Danfoss grants You a limited, non-exclusive, non-transferable, royalty-free, worldwide license (“License”) to install and use the Danfoss Link (“Application”), for User’s use on any device that User owns or controls. The License is granted subject to User’s compliance with the following:
+ a) The terms of this Agreement
+ b) Danfoss Terms of Use (available at www.Danfoss.com)
+ c) Danfoss Privacy Policy (available at www.Danfoss.com)
+
+2. Consent to use of data
+By installing and using the Application you agree that Danfoss may collect, use, register and store information concerning your heating requirements, user set-points, IP-addresses, software and hardware attributes, connection errors and user interaction. Such information is used by Danfoss to improve default settings and enhance the performance of the Application.
+
+3. Proprietary Rights
+This License and the Application contains proprietary information which is owned by Danfoss and protected by applicable intellectual property rights. Except as expressly permitted herein, such Danfoss information herein may not
+ i. be used for any purpose except in compliance with this Agreement,
+ ii. be copied or reproduced in any form, or
+ iii. be modified, rented, leased, sold, distributed or exploited commercially.
+
+Danfoss reserves the right to change, suspend, remove or disable User’s access at any time without notice. The Danfoss name, Danfoss logo and other Danfoss trademarks, graphics and logos are trademarks or registered trademarks of Danfoss or its affiliated companies. User is granted no right or license with respect to such trademarks.
+
+4. Third Party Components
+The Application may include certain third party software components (\"Third Party Components\") including open source and free software components, each of which has its own copyright and its own license conditions (\"Third Party License\"). A list of included Software Components and their respective licenses can be found in under Open source licenses
+
+To the extent any Third Party License grants the User rights to use, copy or modify the Open Source Component that are broader or narrower than the rights granted in this Agreement, then such rights shall take precedence over the rights and restrictions granted in this Agreement solely for such Third Party Components.
+
+5. Disclaimer of Warranty
+This License is provided on an “as is” and “as available” basis for the intended purposes as determined by Danfoss only and any use hereof is at User’s sole risk. The Application and results and information generated thereby cannot substitute technical advice but must be verified by the User, they are not promises and should not be relied on as accurate data or analyses.
+
+Danfoss disclaims all warranties and conditions regarding the Application, whether express, implied, or statutory, including, but not limited to, conditions of merchantability, satisfactory quality, fitness for a particular purpose, accuracy and non-infringement of third parties’ rights. Danfoss does not warrant that the Application will meet your requirements or that the operation hereof will be uninterrupted or error-free.
+
+6. Limitation of Liability
+To the extent not prohibited by law, in no event shall Danfoss be liable for any direct, special, indirect or consequential damages, whatsoever, including, without limitation, damage to property, damages for loss of savings or profits, or loss of data arising out of any use of the Application.
+
+7. Miscellaneous
+The License shall automatically terminate upon User’s breach of any of the terms of this Agreement. Danfoss may terminate the License at its sole discretion without prior notice.
+
+This Agreement and the License is subject to the substantive law of Denmark. Any dispute arising out of or in connection with this Agreement shall be submitted to the exclusive jurisdiction of the courts in Denmark."</string>
+    <string name="firmware_previous_update_failed_ok_button">OK</string>
+    <string name="firmware_previous_update_failed_retry_searching">"Please wait while
+Danfoss Eco reconnects"</string>
+    <string name="firmware_previous_update_failed_retry_subtitle">"This may take up to 3 minutes
+Keep phone charged
+and close to Danfoss Eco™"</string>
+    <string name="firmware_previous_update_failed_retry_title">Update \"%1$s\"</string>
+    <string name="firmware_previous_update_failed_start_button">Start</string>
+    <string name="firmware_previous_update_failed_subtitle">"Check \"%1$s\" for batteries
+and keep phone close to Danfoss Eco™"</string>
+    <string name="firmware_previous_update_failed_title">Previous Update Failed</string>
+    <string name="firmware_recover_firmware_check_available">New firmware available</string>
+    <string name="firmware_recover_firmware_check_failed">"Failed to check for new firmware
+Please try again later"</string>
+    <string name="firmware_recover_firmware_status">"Checking for update
+ Please wait..."</string>
+    <string name="firmware_recover_firmware_subtitle">"This may take up to 3 minutes
+Keep phone charged
+ and close to Danfoss Eco™"</string>
+    <string name="firmware_recover_firmware_title">Update Danfoss Eco™</string>
+    <string name="firmware_recover_unknown_thermostat">Unknown thermostat</string>
+    <string name="firmware_update_completed_subtitle">Danfoss Eco™ has been updated successfully</string>
+    <string name="firmware_update_completed_title">Updated</string>
+    <string name="firmware_update_failed_subtitle">Please try again later</string>
+    <string name="firmware_update_failed_title">Update failed</string>
+    <string name="firmware_update_info_install">Install</string>
+    <string name="firmware_update_info_later">Later</string>
+    <string name="firmware_update_info_subtitle">"Installed firmware: %1$s
+New firmware: %2$s"</string>
+    <string name="firmware_update_info_title">Firmware available</string>
+    <string name="firmware_update_progress_subtitle">Keep close to the Danfoss Eco™ while firmware is transferred</string>
+    <string name="firmware_update_progress_title">Updating</string>
+    <string name="firmware_update_reconnect">Reconnect</string>
+    <string name="firmware_update_reconnecting">Reconnecting</string>
+    <string name="firmware_update_updated_subtitle">"Please wait while
+Danfoss Eco™ reconnects"</string>
+    <string name="firmware_update_updated_title">Updated</string>
+    <string name="first_time_demo_mode">Demo mode</string>
+    <string name="first_time_startup.graphics.app">App</string>
+    <string name="first_time_startup.graphics.cc_cloud">Danfoss Cloud</string>
+    <string name="first_time_startup.graphics.mobile_broadband">Mobile Broadband</string>
+    <string name="first_time_startup.graphics.network">Network</string>
+    <string name="first_time_startup.pairing_failed">Pairing Failed!</string>
+    <string name="first_time_startup.pairing_failed_no_access_to_cc_cloud_mobile">Danfoss Cloud not accessible</string>
+    <string name="first_time_startup.pairing_failed_no_access_to_cc_cloud_wifi">No access to Danfoss Cloud</string>
+    <string name="first_time_startup.pairing_failed_no_access_to_cc_panel_wifi">CC Panel not found on Danfoss Cloud</string>
+    <string name="first_time_startup.pairing_failed_no_network">No network accessible</string>
+    <string name="first_time_startup.pairing_failed_troubleshoot">Troubleshoot</string>
+    <string name="heating_asleep">Asleep</string>
+    <string name="heating_at_home">At home</string>
+    <string name="heating_away">Away</string>
+    <string name="heating_manual">Manual</string>
+    <string name="heating_not_connected">Please connect to a thermostat in order to adjust temperatures</string>
+    <string name="heating_pause">Pause</string>
+    <string name="heating_schedule">Schedule</string>
+    <string name="heating_vacation">Vacation</string>
+    <string name="heating_vacation_deactiviate_title">Set vacation</string>
+    <string name="hour">hour</string>
+    <string name="hours">hours</string>
+    <string name="individual_rooms">Individual Rooms</string>
+    <string name="info">Information</string>
+    <string name="intro_flow_demo_mode">Demo mode</string>
+    <string name="intro_flow_show_intro_presentation">Show introduction screens</string>
+    <string name="intro_flow_use_app">Use app</string>
+    <string name="intro_screen_conditions_icon">Temperatures</string>
+    <string name="intro_screen_conditions_subtitle">for At Home, Away/Asleep and Vacation periods</string>
+    <string name="intro_screen_conditions_title">Program temperatures</string>
+    <string name="intro_screen_main_subtitle">"The following pages show the basic use of the app's functions"</string>
+    <string name="intro_screen_main_title">Welcome to the Danfoss Eco™ App</string>
+    <string name="intro_screen_multiple_subtitle">by selecting thermostats from the menu</string>
+    <string name="intro_screen_multiple_title">Control multiple Danfoss Eco™</string>
+    <string name="intro_screen_rythme_subtitle">to fit your daily rhythm with precise temperature control</string>
+    <string name="intro_screen_rythme_title">Adjust the heating schedule</string>
+    <string name="intro_screen_schedule_icon">Weekly schedule</string>
+    <string name="intro_screen_schedule_subtitle">when needed, for maximum comfort and savings</string>
+    <string name="intro_screen_schedule_title">Schedule to heat</string>
+    <string name="intro_screen_simple_connection_subtitle">confirmed by the red light ring on the Danfoss Eco™</string>
+    <string name="intro_screen_simple_connection_title">Simple connection</string>
+    <string name="intro_screen_vacation_icon">Vacation</string>
+    <string name="intro_screen_vacation_subtitle">by setting time and date for maximum savings</string>
+    <string name="intro_screen_vacation_title">Plan vacation</string>
+    <string name="isconnectedtomdg">isConnectedToMdg</string>
+    <string name="isconnectionswitchon">isConnectionSwitchOn</string>
+    <string name="ispairingmodeactive">isPairingModeActive</string>
+    <string name="ispairingmoderemote">isPairingModeRemote</string>
+    <string name="license.eula.contents">"Danfoss ECtemp™ Smart - End User License Agreement and Disclaimer
+
+ 1. License
+ This end user license agreement and disclaimer (“Agreement”) is entered into between Danfoss A/S or its Affiliates (each of which is referred to as “Danfoss”) and you as an end user (“You” or “User”). In this Agreement “Affiliate” shall mean an entity directly or indirectly controlled by Danfoss A/S whether by shares or voting rights.
+
+ Upon acceptance of this Agreement Danfoss grants You a limited, non-exclusive, non-transferable, royalty-free, worldwide license (“License”) to install and use the Danfoss ECtemp™ Smart (“Application”), for User’s use on any device that User owns or controls. The License is granted subject to User’s compliance with the following:
+ a) The terms of this Agreement
+ b) Danfoss Terms of Use (available at www.Danfoss.com)
+ c) Danfoss Privacy Policy (available at www.Danfoss.com)
+
+ 2. Consent to use of data
+ By installing and using the Application you agree that Danfoss may collect, use, register and store information concerning your heating requirements, user set-points, IP-addresses, software and hardware attributes, connection errors and user interaction. Such information is used by Danfoss to improve default settings and enhance the performance of the Application.
+
+ 3. Proprietary Rights
+ This License and the Application contains proprietary information which is owned by Danfoss and protected by applicable intellectual property rights. Except as expressly permitted herein, such Danfoss information herein may not
+ i. be used for any purpose except in compliance with this Agreement,
+ ii. be copied or reproduced in any form, or
+ iii. be modified, rented, leased, sold, distributed or exploited commercially.
+
+ Danfoss reserves the right to change, suspend, remove or disable User’s access at any time without notice. The Danfoss name, Danfoss logo and other Danfoss trademarks, graphics and logos are trademarks or registered trademarks of Danfoss or its affiliated companies. User is granted no right or license with respect to such trademarks.
+
+ 4. Third Party Components
+ The Application may include certain third party software components (\"Third Party Components\") including open source and free software components, each of which has its own copyright and its own license conditions (\"Third Party License\"). A list of included Software Components and their respective licenses can be found in under Open source licenses
+
+ To the extent any Third Party License grants the User rights to use, copy or modify the Open Source Component that are broader or narrower than the rights granted in this Agreement, then such rights shall take precedence over the rights and restrictions granted in this Agreement solely for such Third Party Components.
+
+ 5. Disclaimer of Warranty
+ This License is provided on an “as is” and “as available” basis for the intended purposes as determined by Danfoss only and any use hereof is at User’s sole risk. The Application and results and information generated thereby cannot substitute technical advice but must be verified by the User, they are not promises and should not be relied on as accurate data or analyses.
+
+ Danfoss disclaims all warranties and conditions regarding the Application, whether express, implied, or statutory, including, but not limited to, conditions of merchantability, satisfactory quality, fitness for a particular purpose, accuracy and non-infringement of third parties’ rights. Danfoss does not warrant that the Application will meet your requirements or that the operation hereof will be uninterrupted or error-free.
+
+ 6. Limitation of Liability
+ To the extent not prohibited by law, in no event shall Danfoss be liable for any direct, special, indirect or consequential damages, whatsoever, including, without limitation, damage to property, damages for loss of savings or profits, or loss of data arising out of any use of the Application.
+
+ 7. Miscellaneous
+ The License shall automatically terminate upon User’s breach of any of the terms of this Agreement. Danfoss may terminate the License at its sole discretion without prior notice.
+
+ This Agreement and the License is subject to the substantive law of Denmark. Any dispute arising out of or in connection with this Agreement shall be submitted to the exclusive jurisdiction of the courts in Denmark."</string>
+    <string name="license.oss.contents.ios">"**** Includes software from https://github.com/nicklockwood/FXBlurView
+Copyright (c) 2013 Charcoal Design
+Thanks to Nick Lockwood!
+
+
+**** Includes MMDrawer from Mutual Mobile
+ Copyright (c) 2013 Mutual Mobile (http://mutualmobile.com/)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the \"Software\"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE."</string>
+    <string name="living_zone">Living Zone</string>
+    <string name="locations">Locations</string>
+    <string name="main_electronic_radiator_thermostat">Electronic radiator thermostat</string>
+    <string name="main_end_demo">End demo</string>
+    <string name="main_title_not_connected">Not connected</string>
+    <string name="mainmenu_debug">System Debug</string>
+    <string name="mainmenu_help">Help</string>
+    <string name="mainmenu_news">News</string>
+    <string name="mainmenu_on_off_devices">On/Off Devices</string>
+    <string name="mainmenu_schedule">Schedule</string>
+    <string name="mainmenu_settings">Settings</string>
+    <string name="mainmenu_status">Status</string>
+    <string name="mark">Mark</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_thermostats">Thermostats</string>
+    <string name="menu_vacation">Vacation</string>
+    <string name="menu_week_schedule">Schedule</string>
+    <string name="mode_asleep">Asleep</string>
+    <string name="mode_at_home">At Home</string>
+    <string name="mode_away">Away</string>
+    <string name="mode_boost">Boost</string>
+    <string name="mode_manual">Manual Mode</string>
+    <string name="mode_pause">Pause</string>
+    <string name="mode_vacation">Vacation</string>
+    <string name="name">Name</string>
+    <string name="network_problem">Network problems</string>
+    <string name="next">Next</string>
+    <string name="no">No</string>
+    <string name="nsbluetoothperipheralusagedescription">Bluetooth is used to communicate with the thermostat</string>
+    <string name="ok">OK</string>
+    <string name="outdoor_heading">Outdoor</string>
+    <string name="outdoor_temperature">Outdoor</string>
+    <string name="pair_flow_completion_add_another">Add another</string>
+    <string name="pair_flow_completion_done">Done</string>
+    <string name="pair_flow_completion_subtitle">You can rename %1$s later in the Thermostats menu</string>
+    <string name="pair_flow_completion_title">Added</string>
+    <string name="pair_flow_dialog_subtitle">Short press Danfoss Eco™ button</string>
+    <string name="pair_flow_dialog_title">"Add
+ Danfoss Eco™"</string>
+    <string name="pair_flow_paired_rename_button">Rename</string>
+    <string name="pair_flow_paired_subtitle">\"%1$s\" is now linked to this app.</string>
+    <string name="pair_flow_paired_title">Paired</string>
+    <string name="pair_flow_rename_text">Rename this Danfoss Eco™</string>
+    <string name="pause.activate_1hour_button">1 Hour</string>
+    <string name="pause.activate_confirmation_description">"Lower the heating to safest
+minimum temperature"</string>
+    <string name="pause.activate_pause">Pause Heating?</string>
+    <string name="pause.deactivate_confirmation_tagline">"End pause mode and
+switch to scheduled heating"</string>
+    <string name="pause.deactivate_pause">Heating Shedule?</string>
+    <string name="pause_title">End Pause?</string>
+    <string name="pause_title_return_to_manual">Return to manual mode</string>
+    <string name="pause_title_return_to_schedule">Return to schedule mode</string>
+    <string name="please_wait">Please wait</string>
+    <string name="refresh">Refresh</string>
+    <string name="responsetime">Response time</string>
+    <string name="scan_recover_thermostat_cancel_button">Cancel</string>
+    <string name="scan_recover_thermostat_recover_button">Recover</string>
+    <string name="scan_recover_thermostat_subtitle">"This may take up to 3 minutes
+Danfoss Eco™ needs firmware
+Recovery to function"</string>
+    <string name="scan_recover_thermostat_title">"Critical Error
+\"%1$s\""</string>
+    <string name="schedule.back_dialog_title">Save schedule?</string>
+    <string name="schedule.choose_copy">Choose which days you want to copy the schedule to</string>
+    <string name="schedule.daily_schedule">daily schedule</string>
+    <string name="schedule.disable_manual_to_edit">Disable manual mode to edit</string>
+    <string name="schedule.friday">Friday</string>
+    <string name="schedule.friday_abbreviated">Fr</string>
+    <string name="schedule.living_room_header">Living Zone (shared schedule)</string>
+    <string name="schedule.manual_temperature">Manual temperature</string>
+    <string name="schedule.monday">Monday</string>
+    <string name="schedule.monday_abbreviated">Mo</string>
+    <string name="schedule.saturday">Saturday</string>
+    <string name="schedule.saturday_abbreviated">Sa</string>
+    <string name="schedule.sunday">Sunday</string>
+    <string name="schedule.sunday_abbreviated">Su</string>
+    <string name="schedule.thursday">Thursday</string>
+    <string name="schedule.thursday_abbreviated">Th</string>
+    <string name="schedule.tuesday">Tuesday</string>
+    <string name="schedule.tuesday_abbreviated">Tu</string>
+    <string name="schedule.wednesday">Wednesday</string>
+    <string name="schedule.wednesday_abbreviated">We</string>
+    <string name="schedule.weekly_schedule">Weekly Schedule</string>
+    <string name="schedule_edit_individual_room">Schedule</string>
+    <string name="schedule_edit_living_zone">Living Zone schedule</string>
+    <string name="set">Set</string>
+    <string name="settings">Settings</string>
+    <string name="settings.active_peer_postfix">(Active)</string>
+    <string name="settings.add_new_location">Add thermostat</string>
+    <string name="settings.delete_active_peer.ios">Disconnect and remove %@ from list of known locations?</string>
+    <string name="settings.edit_location_explanation_android">Swipe to disconnect and delete. Select to rename.</string>
+    <string name="settings.edit_location_pairing_deleted">User deleted</string>
+    <string name="settings.edit_location_pairings_deleted">%1$s users deleted</string>
+    <string name="settings.edit_location_rename">Rename</string>
+    <string name="settings.edit_locations">Edit rooms</string>
+    <string name="settings.locations_headline">Heating System Locations</string>
+    <string name="settings.modes">Modes</string>
+    <string name="settings.pause_temperature">Pause temperature</string>
+    <string name="settings.system_information">System Information</string>
+    <string name="settings.system_information.app_build_version">App build</string>
+    <string name="settings.system_information.preset_temperatures">Preset temperatures</string>
+    <string name="settings.vacation_temperature">Vacation temperature</string>
+    <string name="settings_advanced_adaptive">Adaptive learning</string>
+    <string name="settings_advanced_adaptive_description">Enables Danfoss Eco™ to start heating early to reach the target temperature on scheduled time</string>
+    <string name="settings_advanced_display_rotation">Display rotation</string>
+    <string name="settings_advanced_display_rotation_description">Rotates display information 180°</string>
+    <string name="settings_advanced_reaction_time">Heat control</string>
+    <string name="settings_advanced_reaction_time_description">"Moderate is recommended for district energy and condensing boilers.
+Quick is recommended for non-condensing boilers."</string>
+    <string name="settings_advanced_reaction_time_moderate">Moderate</string>
+    <string name="settings_advanced_reaction_time_quick">Quick</string>
+    <string name="settings_advanced_thermostat_mounting_mode">Mounting mode</string>
+    <string name="settings_advanced_thermostat_mounting_mode_description">"When installed, the thermostat is regulating the temperature when mounted correctly on a radiator valve.
+
+When not installed, and the \"M\" symbol is flashing in the Danfoss Eco™ display, the thermostat is ready to be mounted on a radiator valve.
+In this mode, Danfoss Eco™ is not adjusting the temperature."</string>
+    <string name="settings_advanced_thermostat_mounting_mode_off">Not installed</string>
+    <string name="settings_advanced_thermostat_mounting_mode_on">Installed</string>
+    <string name="settings_advanced_thermostat_mounting_mode_toggle_text">Installed</string>
+    <string name="settings_advanced_thermostat_mounting_turn_off_description">"This will disconnect the app from the Eco temporarily.
+
+Do you want to uninstall this Eco?"</string>
+    <string name="settings_advanced_thermostat_mounting_turn_off_title">Change mode?</string>
+    <string name="settings_advanced_thermostat_mounting_turn_on_description">"This will disconnect the app from the Eco temporarily.
+
+Is the Eco mounted safely on the radiator valve?"</string>
+    <string name="settings_advanced_thermostat_mounting_turn_on_title">Install?</string>
+    <string name="settings_advanced_thermostat_orientation">Thermostat orientation</string>
+    <string name="settings_advanced_thermostat_orientation_description">The thermostat orientation can influence performance, for example, where the thermostat is placed closer to heat from the pipes and valve.</string>
+    <string name="settings_advanced_thermostat_orientation_horizontal">Horizontal</string>
+    <string name="settings_advanced_thermostat_orientation_vertical">Vertical</string>
+    <string name="settings_help_show_intro_screens">Show introduction screens</string>
+    <string name="settings_help_topics">Topics</string>
+    <string name="settings_help_url">http://linkapp.danfoss.com</string>
+    <string name="settings_menu_advanced">Advanced settings</string>
+    <string name="settings_menu_demo_mode">Demo mode</string>
+    <string name="settings_menu_eula">EULA</string>
+    <string name="settings_menu_help">Help</string>
+    <string name="settings_menu_restrictions">Restrictions</string>
+    <string name="settings_menu_system_information">System Information</string>
+    <string name="settings_open_source_licenses">Open source licenses</string>
+    <string name="settings_restrictions_change_pin">Change PIN Code</string>
+    <string name="settings_restrictions_change_pin_enter_pin">Enter PIN Code</string>
+    <string name="settings_restrictions_change_pin_reenter_pin">Re-enter PIN Code</string>
+    <string name="settings_restrictions_change_pin_reenter_pin_fail">PIN Code mismatch, try again</string>
+    <string name="settings_restrictions_child_lock">Child lock</string>
+    <string name="settings_restrictions_child_lock_description">Prevents operation from thermostat</string>
+    <string name="settings_restrictions_frost_protection">Frost protection</string>
+    <string name="settings_restrictions_frost_protection_description">The minimum temperature protects your heating system</string>
+    <string name="settings_restrictions_max">Max</string>
+    <string name="settings_restrictions_min">Min</string>
+    <string name="settings_restrictions_pin">PIN Code</string>
+    <string name="settings_system_information_app_version">App version</string>
+    <string name="settings_system_information_firmware_revision">Firmware revision</string>
+    <string name="settings_system_information_hardware_revision">Hardware revision</string>
+    <string name="settings_system_information_locale">Locale</string>
+    <string name="settings_system_information_manufactor">Manufactor name</string>
+    <string name="settings_system_information_model_number">Model number</string>
+    <string name="settings_system_information_serial_number">MAC Address</string>
+    <string name="settings_system_information_software_revision">Radio protocol version</string>
+    <string name="show_communication">Show communication</string>
+    <string name="system_status.category_alerts">Alerts</string>
+    <string name="system_status.category_information">Information</string>
+    <string name="system_status.category_warnings">Warnings</string>
+    <string name="system_status.mark_as_unread">Mark as unread</string>
+    <string name="system_status.title">System status</string>
+    <string name="temperaturescale">Temperature scale</string>
+    <string name="thermostats_add_eco2">Add Danfoss Eco™</string>
+    <string name="thermostats_forget">Delete</string>
+    <string name="thermostats_not_connected">Not connected</string>
+    <string name="thermostats_rename">Rename</string>
+    <string name="thermostats_unpair_confirm_button">Yes, unpair</string>
+    <string name="thermostats_unpair_description">"This removes
+ %1$s
+ from the list of paired Eco's"</string>
+    <string name="thermostats_unpair_title">Unpair?</string>
+    <string name="troubleshooter.pairing_failed_no_access_to_cc_cloud_mobile">Danfoss Cloud not accessible</string>
+    <string name="troubleshooter.pairing_failed_no_access_to_cc_cloud_mobile_explanation">"There is no connection to the Danfoss Cloud on the current Mobile Broadband connection.
+
+ 1. Please try to improve your Mobile Broadband signal by moving closer to a window or even outside.
+
+ - Otherwise -
+
+ 2. If you are able to do so, please use a WiFi connection instead."</string>
+    <string name="troubleshooter.pairing_failed_no_access_to_cc_cloud_wifi_explanation">"There is no connection to the Danfoss Cloud on the current WiFi connection.
+
+ 1. Ensure that you are within proper range of the WiFi router to provide a good signal.
+
+ - Otherwise -
+
+ 2. If on a public WiFi, please check if additional login is required."</string>
+    <string name="troubleshooter.pairing_failed_no_access_to_cc_panel_mobile">CC Panel not accessible</string>
+    <string name="troubleshooter.pairing_failed_no_access_to_cc_panel_wifi_explanation">"There is no connection to the CC Panel on the current WiFi connection, but it seems that the problem is not on your cell phone.
+
+ Please ensure that the CC Panel is itself connected to the internet"</string>
+    <string name="troubleshooter.pairing_failed_no_access_to_cc_panel_wifi_with_LAN">CC Panel not found on Danfoss Cloud</string>
+    <string name="troubleshooter.pairing_failed_no_network_explanation">"It has been detected that there is no available networks on your cell phone.
+
+ Please enable either WiFi or Mobile Broadband and wait for the internet connection to reestablish."</string>
+    <string name="undo">Undo</string>
+    <string name="undo_all">Undo All</string>
+    <string name="uptime">Uptime</string>
+    <string name="vacation.activate_confirmation_description">Lower heating to</string>
+    <string name="vacation.activate_confirmation_description2">while you are away</string>
+    <string name="vacation.activate_plan_vacation">Plan Period</string>
+    <string name="vacation.activate_plan_vacation_leave">Leave</string>
+    <string name="vacation.activate_plan_vacation_leave_when">When are you leaving?</string>
+    <string name="vacation.activate_plan_vacation_need_two_dates">Please select both leaving and returning date</string>
+    <string name="vacation.activate_plan_vacation_return">Return</string>
+    <string name="vacation.activate_plan_vacation_return_when">When are you returning home?</string>
+    <string name="vacation.activate_vacation">Vacation?</string>
+    <string name="vacation.deactivate_confirmation_tagline">"End vacation mode and
+switch to scheduled heating"</string>
+    <string name="vacation.deactivate_planned_confirmation_tagline">Cancel planned vacation mode</string>
+    <string name="vacation.deactivate_vacation">Heating Shedule?</string>
+    <string name="vacation_activate_now">Now</string>
+    <string name="vacation_activate_plan">Plan</string>
+    <string name="vacation_activate_subtitle">"Lowers the temperature
+to %1$sº C
+while you are away"</string>
+    <string name="vacation_activate_title">Vacation?</string>
+    <string name="vacation_deactivate_planned_subtitle">Cancel planned vacation?</string>
+    <string name="vacation_deactivate_planned_title">Cancel?</string>
+    <string name="vacation_deactiviate_current_subtitle">Return to previous mode?</string>
+    <string name="vacation_deactiviate_current_title">End vacation?</string>
+    <string name="vacation_edit">Edit</string>
+    <string name="vacation_yes">Yes</string>
+    <string name="warning">Warning</string>
+    <string name="wrong.api.version.text">Your application is not compatible with the Home Controller. Please make sure that both are updated to latest version.</string>
+    <string name="yes">Yes</string>
+    <string name="crash_dialog_message">The app found information about previous crashes. Would you like to send this data to the developer?</string>
+    <string name="crash_dialog_negative_button">Dismiss</string>
+    <string name="crash_dialog_positive_button">Send</string>
+    <string name="crash_dialog_title">Crash Data</string>
+    <string name="feedback_back_description">Go back</string>
+    <string name="feedback_comment_cancel">CANCEL</string>
+    <string name="feedback_comment_clear">CLEAR</string>
+    <string name="feedback_comment_ok">OK</string>
+    <string name="feedback_comment_placeholder">…</string>
+    <string name="feedback_comment_popup_title">Feedback comment</string>
+    <string name="feedback_delete_drawings_description">Delete drawings</string>
+    <string name="feedback_pick_color_description">Pick color</string>
+    <string name="feedback_screenshot">Feedback image</string>
+    <string name="feedback_send_description">Send feedback</string>
+    <string name="feedback_sent_toast">Feedback sent</string>
+    <string name="feedback_title">Feedback</string>
+    <string name="feedback_undo_drawings_description">Undo last draw action</string>
+    <string name="feedback_write_comment_description">Comment</string>
+    <string name="invalid_date">Date must be between %1$s and %2$s.</string>
+    <string name="license.eula.title">EULA</string>
+    <string name="license.oss.title">Open source licenses</string>
+    <string name="settings.notifications">Notifications</string>
+    <string name="month_name_format">MMMM yyyy</string>
+    <string name="abc_font_family_body_1_material">sans-serif</string>
+    <string name="abc_font_family_body_2_material">sans-serif-medium</string>
+    <string name="abc_font_family_button_material">sans-serif-medium</string>
+    <string name="abc_font_family_caption_material">sans-serif</string>
+    <string name="abc_font_family_display_1_material">sans-serif</string>
+    <string name="abc_font_family_display_2_material">sans-serif</string>
+    <string name="abc_font_family_display_3_material">sans-serif</string>
+    <string name="abc_font_family_display_4_material">sans-serif-light</string>
+    <string name="abc_font_family_headline_material">sans-serif</string>
+    <string name="abc_font_family_menu_material">sans-serif</string>
+    <string name="abc_font_family_subhead_material">sans-serif</string>
+    <string name="abc_font_family_title_material">sans-serif-medium</string>
+    <string name="advanced_readings">Advanced readings</string>
+    <string name="advanced_readings.away">Away</string>
+    <string name="advanced_readings.disabled">Off</string>
+    <string name="advanced_readings.enabled">On</string>
+    <string name="advanced_readings.min_floor">Min floor</string>
+    <string name="advanced_readings.mode">Mode</string>
+    <string name="advanced_readings.mode.away">Away</string>
+    <string name="advanced_readings.mode.comfort">Comfort</string>
+    <string name="advanced_readings.mode.configuring">Configuring</string>
+    <string name="advanced_readings.mode.economy">Economy</string>
+    <string name="advanced_readings.mode.fatal">Fatal</string>
+    <string name="advanced_readings.mode.frost_protection">Frost protection</string>
+    <string name="advanced_readings.mode.manual">Manual</string>
+    <string name="advanced_readings.mode.off">Off</string>
+    <string name="advanced_readings.mode.temporary">Temporary</string>
+    <string name="advanced_readings.operations_time">Operation time [s]</string>
+    <string name="advanced_readings.relay_on_time">Relay on time [s]</string>
+    <string name="advanced_readings.relay_shifts">Relay shifts</string>
+    <string name="advanced_readings.schedule">Schedule</string>
+    <string name="advanced_readings.setpoint.away">Away temp</string>
+    <string name="advanced_readings.setpoint.comfort">Comfort temp</string>
+    <string name="advanced_readings.setpoint.economy">Economy temp</string>
+    <string name="advanced_readings.setpoint.frost">Frost protection temp</string>
+    <string name="advanced_readings.setpoint.max_floor">Max floor temp</string>
+    <string name="advanced_readings.setpoint.min_floor">Min floor temp</string>
+    <string name="advanced_readings.settings">Settings</string>
+    <string name="advanced_readings.software">Software</string>
+    <string name="advanced_readings.statistics">Statistics</string>
+    <string name="advanced_readings.temperatures">Temperatures</string>
+    <string name="advanced_readings.temperatures.floor">Floor</string>
+    <string name="advanced_readings.temperatures.room">Room</string>
+    <string name="advanced_readings.usage">Usage</string>
+    <string name="advanced_readings.usage.30">30 days [w]</string>
+    <string name="advanced_readings.usage.7">7 days [w]</string>
+    <string name="advanced_readings.usage.total">Total [w]</string>
+    <string name="advanced_settings">Advanced settings</string>
+    <string name="appbar_scrolling_view_behavior">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="bottom_sheet_behavior">android.support.design.widget.BottomSheetBehavior</string>
+    <string name="character_counter_pattern">%1$d / %2$d</string>
+    <string name="configuration_confirm_message">Press the green pulsating button on the thermostat to confirm saving configuration</string>
+    <string name="configuration_retry_description">The save operation timed out. Please try again.</string>
+    <string name="configuration_success">The new configuration has been saved</string>
+    <string name="configuration_success_continue">Continue</string>
+    <string name="consumption.30_days">Last 30 days</string>
+    <string name="consumption.7_days">Last 7 days</string>
+    <string name="consumption.all_time">All time</string>
+    <string name="consumption.header">Power consumption</string>
+    <string name="day_name_format">EEE</string>
+    <string name="dominion.android.notify_temperature_too_low_body">Temperature is now too low in %2$s. Perhaps a window is open?</string>
+    <string name="dominion.android.notify_temperature_too_low_title">Temperature too low in %2$s</string>
+    <string name="dominion.ios.notify_temperature_too_low_body">Temperature is now too low in %2$s in %1$s. Perhaps a window is open?</string>
+    <string name="dominion.ios.notify_temperature_too_low_title">Temperature too low in %2$s in %1$s</string>
+    <string name="download_failed_dialog_message">The update could not be downloaded. Would you like to try again?</string>
+    <string name="download_failed_dialog_negative_button">Cancel</string>
+    <string name="download_failed_dialog_positive_button">Retry</string>
+    <string name="download_failed_dialog_title">Download Failed</string>
+    <string name="edit_configuration">Technician setup</string>
+    <string name="factory_reset">Factory reset</string>
+    <string name="factory_reset_button">Reset</string>
+    <string name="factory_reset_complete">Factory reset complete, returning to main menu</string>
+    <string name="factory_reset_confirm">Press the green pulsating button on the thermostat to confirm factory reset</string>
+    <string name="factory_reset_header">Factory reset thermostat</string>
+    <string name="factory_reset_lower">Your thermostat should now look like the above. Press the thermostat to confirm</string>
+    <string name="factory_reset_timeout">Timed out, try again</string>
+    <string name="factory_reset_upper">"This will delete all changes on your thermostat. To initiate, press 'Reset'"</string>
+    <string name="forecast">Forecast</string>
+    <string name="frost_prot_temperature">Frostprotection</string>
+    <string name="fullversion">1.3 (741)</string>
+    <string name="hardware_ware">Hardware version</string>
+    <string name="header_about">About</string>
+    <string name="header_advanced_setpoints">Advanced temperatures</string>
+    <string name="header_floor_configuration">Floor configuration</string>
+    <string name="header_power">Power options</string>
+    <string name="help">Help</string>
+    <string name="http_app_faq">https://ectempsmart.danfoss.com/hc/en-us</string>
+    <string name="license.oss.contents.android">"**** Includes software from https://github.com/square/android-times-square. License:
+Copyright 2012 Square, Inc.
+
+Licensed under the Apache License, Version 2.0 (the \"License\");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an \"AS IS\" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+**** Includes software from https://github.com/JakeWharton/Android-ViewPagerIndicator. License:
+Copyright 2012 Jake Wharton
+Copyright 2011 Patrik Åkerfeldt
+Copyright 2011 Francisco Figueiredo Jr.
+
+Licensed under the Apache License, Version 2.0 (the \"License\");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an \"AS IS\" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License."</string>
+    <string name="license.oss.contents.mdg">"**** Includes software from https://www.openssl.org. License:
+
+OpenSSL License
+ ---------------
+
+/* ====================================================================
+ * Copyright (c) 1998-2011 The OpenSSL Project. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * 1. Redistributions of source code must retain the above copyright
+ * notice, this list of conditions and the following disclaimer.
+ *
+ * 2. Redistributions in binary form must reproduce the above copyright
+ * notice, this list of conditions and the following disclaimer in
+ * the documentation and/or other materials provided with the
+ * distribution.
+ *
+ * 3. All advertising materials mentioning features or use of this
+ * software must display the following acknowledgment:
+ * \"This product includes software developed by the OpenSSL Project
+ * for use in the OpenSSL Toolkit. (http://www.openssl.org/)\"
+ *
+ * 4. The names \"OpenSSL Toolkit\" and \"OpenSSL Project\" must not be used to
+ * endorse or promote products derived from this software without
+ * prior written permission. For written permission, please contact
+ * openssl-core@openssl.org.
+ *
+ * 5. Products derived from this software may not be called \"OpenSSL\"
+ * nor may \"OpenSSL\" appear in their names without prior written
+ * permission of the OpenSSL Project.
+ *
+ * 6. Redistributions of any form whatsoever must retain the following
+ * acknowledgment:
+ * \"This product includes software developed by the OpenSSL Project
+ * for use in the OpenSSL Toolkit (http://www.openssl.org/)\"
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE OpenSSL PROJECT ``AS IS'' AND ANY
+ * EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE OpenSSL PROJECT OR
+ * ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ * ====================================================================
+ *
+ * This product includes cryptographic software written by Eric Young
+ * (eay@cryptsoft.com). This product includes software written by Tim
+ * Hudson (tjh@cryptsoft.com).
+ *
+ */
+
+ Original SSLeay License
+ -----------------------
+
+/* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+ * All rights reserved.
+ *
+ * This package is an SSL implementation written
+ * by Eric Young (eay@cryptsoft.com).
+ * The implementation was written so as to conform with Netscapes SSL.
+ *
+ * This library is free for commercial and non-commercial use as long as
+ * the following conditions are aheared to. The following conditions
+ * apply to all code found in this distribution, be it the RC4, RSA,
+ * lhash, DES, etc., code; not just the SSL code. The SSL documentation
+ * included with this distribution is covered by the same copyright terms
+ * except that the holder is Tim Hudson (tjh@cryptsoft.com).
+ *
+ * Copyright remains Eric Young's, and as such any Copyright notices in
+ * the code are not to be removed.
+ * If this package is used in a product, Eric Young should be given attribution
+ * as the author of the parts of the library used.
+ * This can be in the form of a textual message at program startup or
+ * in documentation (online or textual) provided with the package.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ * 1. Redistributions of source code must retain the copyright
+ * notice, this list of conditions and the following disclaimer.
+ * 2. Redistributions in binary form must reproduce the above copyright
+ * notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution.
+ * 3. All advertising materials mentioning features or use of this software
+ * must display the following acknowledgement:
+ * \"This product includes cryptographic software written by
+ * Eric Young (eay@cryptsoft.com)\"
+ * The word 'cryptographic' can be left out if the rouines from the library
+ * being used are not cryptographic related :-).
+ * 4. If you include any Windows specific code (or a derivative thereof) from
+ * the apps directory (application code) you must include an acknowledgement:
+ * \"This product includes software written by Tim Hudson (tjh@cryptsoft.com)\"
+ *
+ * THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+ * SUCH DAMAGE.
+ *
+ * The licence and distribution terms for any publically available version or
+ * derivative of this code cannot be changed. i.e. this code cannot simply be
+ * copied and put under another distribution licence
+ * [including the GNU Public Licence.]
+ */"</string>
+    <string name="livingzone_empty">Empty Living Zone</string>
+    <string name="livingzone_overlay.header">Living Zone</string>
+    <string name="livingzone_overlay.schedule_description">The rooms in your living zone are configured differently. Select below what schedule should be active in the living zone.</string>
+    <string name="livingzone_overlay.state.manual">Manual mode</string>
+    <string name="livingzone_overlay.state.pause">Frost protection</string>
+    <string name="livingzone_overlay.state.scheduled">Scheduled heating</string>
+    <string name="livingzone_overlay.state.temporary">Extended heating period</string>
+    <string name="livingzone_overlay.state_description">The rooms in your living zone are configured differently. Select below what state should be active in the living zone.</string>
+    <string name="livingzone_overlay.vacation.disabled">No planned vacation</string>
+    <string name="livingzone_overlay.vacation_description">The rooms in your living zone are configured differently. Select below what vacation should be active in the living zone.</string>
+    <string name="max_floor_temperature">Max floor temperature</string>
+    <string name="min_floor_temperature">Min floor temperature</string>
+    <string name="min_floor_temperature_enabled">Min floor temperature enabled</string>
+    <string name="not_applicable">N/A</string>
+    <string name="not_available_in_current_version">Not available in current version</string>
+    <string name="notification_activity.header">Message from server</string>
+    <string name="notification_activity.title">Notification</string>
+    <string name="open_source_licenses">"
+**** Includes software from The Android Open Source Project
+ Copyright © 2015 The Android Open Source Project
+
+ Licensed under the Apache License, Version 2.0 (the License); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+ \u0009http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+
+ **** Includes software from https://github.com/square/okhttp
+ Copyright 2016 Square, Inc.
+
+ Licensed under the Apache License, Version 2.0 (the License); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+ \u0009http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+
+ **** Includes software from https://github.com/square/android-times-square
+ Copyright 2012 Square, Inc.
+
+ Licensed under the Apache License, Version 2.0 (the License); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+ \u0009http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+
+ **** Includes software from https://github.com/google/gson
+ Copyright 2008 Google Inc.
+
+ Licensed under the Apache License, Version 2.0 (the License); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+ \u0009http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an AS IS BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+"</string>
+    <string name="open_window">Open window detection</string>
+    <string name="password_toggle_content_description">Toggle password visibility</string>
+    <string name="path_password_eye">M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z</string>
+    <string name="path_password_eye_mask_strike_through">M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
+    <string name="path_password_eye_mask_visible">M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z</string>
+    <string name="path_password_strike_through">M3.27,4.27 L19.74,20.74</string>
+    <string name="pref.key.advanced">settings_advanced</string>
+    <string name="pref.key.advanced_adaptive">settings_advanced_adaptive</string>
+    <string name="pref.key.advanced_display_rotation">settings_advanced_display_rotation</string>
+    <string name="pref.key.advanced_heat_control">settings_advanced_heat_control</string>
+    <string name="pref.key.advanced_mounting_mode">settings_advanced_mounting_mode</string>
+    <string name="pref.key.advanced_thermostat_orientation">settings_advanced_thermostat_orientation</string>
+    <string name="pref.key.help">settings_help</string>
+    <string name="pref.key.help_demo_mode">settings_help_demo_mode</string>
+    <string name="pref.key.help_show_intro">settings_help_show_intro</string>
+    <string name="pref.key.info_locale">info_locale</string>
+    <string name="pref.key.restrictions">settings_restrictions</string>
+    <string name="pref.key.restrictions_child_lock">settings_restrictions_child_lock</string>
+    <string name="pref.key.restrictions_frost_protection">settings_restrictions_frost_protection</string>
+    <string name="pref.key.restrictions_maximum">settings_restrictions_maximum</string>
+    <string name="pref.key.restrictions_minimum">settings_restrictions_minimum</string>
+    <string name="pref.key.restrictions_pin">settings_restrictions_pin</string>
+    <string name="pref.key.restrictions_use_pin">settings_restrictions_use_pin</string>
+    <string name="relay_info.count">Click count</string>
+    <string name="relay_info.days_abbreviation">d</string>
+    <string name="relay_info.header">About relay</string>
+    <string name="relay_info.hours_abbreviation">hrs</string>
+    <string name="relay_info.minutes_abbreviation">min</string>
+    <string name="relay_info.on_time">On time</string>
+    <string name="remote.logging">Remote logging</string>
+    <string name="remote.logging.message">Enable remote logging for %1$s hours?</string>
+    <string name="restart_thermostat">Restart thermostat</string>
+    <string name="retry">Retry</string>
+    <string name="save">Save</string>
+    <string name="screen_lock">Screen lock</string>
+    <string name="sdg.android.notify_peer_went_offline_body">Thermostat in %2$s is no longer available online.</string>
+    <string name="sdg.android.notify_peer_went_offline_title">Thermostat in %2$s went offline</string>
+    <string name="sdg.ios.notify_peer_went_offline_body">Thermostat in %2$s in %1$s is no longer available online.</string>
+    <string name="sdg.ios.notify_peer_went_offline_title">Thermostat in %2$s in house %1$s went offline</string>
+    <string name="serial_number">Serial number</string>
+    <string name="settings.edit_devices_explanation_android">Select a user to disconnect and delete.</string>
+    <string name="settings.edit_houses">Edit houses</string>
+    <string name="settings.exit_demo_mode">Leave demo mode</string>
+    <string name="settings.notification_switch">Receive notifications if a thermostat goes offline</string>
+    <string name="settings.notification_title">Notification settings</string>
+    <string name="settings.notifications.temperature_switch">Receive notifications for too low temperature</string>
+    <string name="settings.paired_devices">Users</string>
+    <string name="settings.paired_devices.dialog_description">This will make the thermostat forget the selected user, would you like to proceed?</string>
+    <string name="settings.paired_devices.dialog_header">Remove user</string>
+    <string name="settings.paired_devices.error_cant_delete_self">"Can't remove myself"</string>
+    <string name="settings.peer_id">My peer id</string>
+    <string name="settings.receive_house">Receive house</string>
+    <string name="settings.share_house">Share house</string>
+    <string name="settings.system_information.api_versions">Supported API versions</string>
+    <string name="settings.system_information.autoupdate_sw">Automatic software updates</string>
+    <string name="settings.system_information.temperature_unit">Temperature unit</string>
+    <string name="setup_abort_setup_body">Do you wish to abort the setup?</string>
+    <string name="setup_activate_only_one_turned_on">Ensure that only one thermostat is turned on</string>
+    <string name="setup_activate_thermo_first_step">Activate thermostat by a simple touch</string>
+    <string name="setup_activate_thermo_second_step">Make sure only one thermostat is activated</string>
+    <string name="setup_close">Close</string>
+    <string name="setup_confirm_connection">Press the green pulsating button on the thermostat to confirm the connection</string>
+    <string name="setup_consumer_configured_body">Your thermostat has been configured, and it will now be connected to the app.</string>
+    <string name="setup_consumer_configured_header">Connect</string>
+    <string name="setup_consumer_option">Setup for consumer</string>
+    <string name="setup_consumer_overview_description">Verify that the setup is correct</string>
+    <string name="setup_consumer_overview_header">Thermostat configuration</string>
+    <string name="setup_consumer_overview_house_will_be_created">A new house will be created</string>
+    <string name="setup_consumer_welcome_body">Your thermostat has been configured, and it will now be connected to the app.</string>
+    <string name="setup_consumer_welcome_header">Connect</string>
+    <string name="setup_disable_wifi_avoidance_description">To enable your phone to connect to the thermostat you need to disable the setting \"%1$s\". You will now be taken to the settings screen.</string>
+    <string name="setup_disable_wifi_avoidance_header">Wifi settings</string>
+    <string name="setup_enable_location_body">Location services needs to be enabled to the app to find the thermostat. Please enable location services.</string>
+    <string name="setup_enable_location_title">Location</string>
+    <string name="setup_ensure_blue">Press \"Next\" when the indicator on the thermostat pulsates blue</string>
+    <string name="setup_ensure_blue_help">"When the thermostat is open for connections the button in the upper left corner will be pulsating blue. The thermostat will open for connections when turned on.
+If your thermostat is already turned on but not pulsating blue you will need to turn it off and on again.
+To turn the thermostat off press and hold the upper left button for 3 seconds while the thermostat counts down on the display. Afterwards press the upper left button again to turn it on. Wait for the thermostat to start and the button to pulsate blue, this might take up to 30 seconds.
+Note: The thermostat is open for connections in 2 minutes after being turned on."</string>
+    <string name="setup_error_cloud_failed_c1">C1</string>
+    <string name="setup_error_cloud_failed_c2">C2</string>
+    <string name="setup_error_cloud_failed_c3">C3</string>
+    <string name="setup_error_cloud_failed_description">The thermostat was unable to connect to the cloud. The thermostat is showing an error code on the display, please select the appropriate one below to be guided through troubleshooting.</string>
+    <string name="setup_error_cloud_failed_header">Thermostat connection failed</string>
+    <string name="setup_error_cloud_failed_other">Other</string>
+    <string name="setup_error_illegal_hexa_body">The supplied hexa code is for a thermostat with breakout active, but the connected thermostat does not have breakout active.</string>
+    <string name="setup_error_illegal_hexa_header">Illegal hexa code</string>
+    <string name="setup_error_no_internet_description">The thermostat succesfully connected to the your WiFi network, but no internet is available.Please ensure that your WiFi has access to the internet.</string>
+    <string name="setup_error_no_internet_header">Thermostat connection failed</string>
+    <string name="setup_error_no_ip_description">The thermstat succesfully connected to the your WiFi network, but the thermostat did not recieve and IP-address.Please ensure that your WiFi configured correctly and retry connecting.</string>
+    <string name="setup_error_no_ip_header">Thermostat connection failed</string>
+    <string name="setup_error_no_mdg_description">"The app was unable to establish a connection to the cloud, and was thus unable to verfiy that the thermostat was connected.
+Ensure that the smartphone has an active internet connection and retry connecting the thermostat."</string>
+    <string name="setup_error_no_mdg_header">No cloud connection</string>
+    <string name="setup_error_not_found_body">"The phone is not able to connect to your thermostat.
+Please turn the thermostat off and on again.
+Note: The thermostat is open for connection in 2 minutes after being turned on."</string>
+    <string name="setup_error_not_found_header">Thermostat not found</string>
+    <string name="setup_error_other_description">An unknown error occured when the thermostat was trying to connect to the cloud. Please contact support.</string>
+    <string name="setup_error_other_header">Unknown error</string>
+    <string name="setup_error_proceed_anyways">Proceed to app anyways</string>
+    <string name="setup_error_retry_connect">Retry cloud connection</string>
+    <string name="setup_error_wrong_credentials_description">The thermostat was unable to connect to your WiFi with the supplied SSID and password.The next steps will allow you to go through the information and ensure that it is correct.</string>
+    <string name="setup_error_wrong_credentials_header">Wrong WiFi credentials</string>
+    <string name="setup_fieldtest_succes_body">"The thermostat will now connect to your WiFi network, and be updated via the internet.
+When the control button is pulsating blue, then the system is ready. Push the ”Continiue” button below.
+
+Note - Depending of your network speed, then this can take several minutes"</string>
+    <string name="setup_fieldtest_succes_header">Waiting for update</string>
+    <string name="setup_fieldtest_welcome_body">"In order to use the thermostat, it needs to be updated.
+Next step is to configure your thermostat to connect to the Wi-Fi network.
+
+The thermostat will then automaticaly update to the newest software, and afterwards the thermostat will reboot and be ready for initial setup.
+
+This update process will secure you the optimal experince with your fieldtest thermostat."</string>
+    <string name="setup_fieldtest_welcome_header">Welcome to fieldtest</string>
+    <string name="setup_header_info">Info</string>
+    <string name="setup_help_title">Help</string>
+    <string name="setup_hexa_code_undefined">Not defined</string>
+    <string name="setup_input_flooring_description">Choose the installed floor type</string>
+    <string name="setup_input_flooring_header">Flooring</string>
+    <string name="setup_input_hexa_description">Find HEXAcode in the existing Danfoss ECtemp™ Touch thermostat before you remove it</string>
+    <string name="setup_input_hexa_header">Hexa code</string>
+    <string name="setup_input_house_description">Choose the house the thermostat is connected to</string>
+    <string name="setup_input_house_header">House</string>
+    <string name="setup_input_new_house_description">Choose a name to the new house</string>
+    <string name="setup_input_new_house_header">Add house</string>
+    <string name="setup_input_output_description">Select installed heating power</string>
+    <string name="setup_input_output_header">Heating output</string>
+    <string name="setup_input_overview_description">Verify that the setup is correct</string>
+    <string name="setup_input_overview_header">Thermostat configuration</string>
+    <string name="setup_input_password_description">Type the password for your Wi-Fi</string>
+    <string name="setup_input_password_header">Wi-Fi password</string>
+    <string name="setup_input_phonename_description">Write the name of the person using this phone</string>
+    <string name="setup_input_phonename_header">Name of the user</string>
+    <string name="setup_input_phonename_placeholder">Name</string>
+    <string name="setup_input_regulation_description">Choose sensor for temperature regulation</string>
+    <string name="setup_input_regulation_header">Regulation</string>
+    <string name="setup_input_room_description">Name the room where the thermostat is placed</string>
+    <string name="setup_input_room_header">Room name</string>
+    <string name="setup_input_roomtype_description">Choose the room type where the system is installed</string>
+    <string name="setup_input_roomtype_header">Room type</string>
+    <string name="setup_input_sensor_description">Choose type of installed floor sensor</string>
+    <string name="setup_input_sensor_header">Sensor type</string>
+    <string name="setup_input_ssid_description">Choose the wireless Wi-Fi network, that the thermostat should connect to.</string>
+    <string name="setup_input_ssid_header">Wi-Fi network</string>
+    <string name="setup_input_ssid_other_button">Add Wi-Fi network manually</string>
+    <string name="setup_input_ssid_other_description">"Select the name of the Wi-Fi network, that the thermostat should connect to.
+If the network is not mentioned, please write it on the line below."</string>
+    <string name="setup_input_ssid_other_header">Wi-Fi network</string>
+    <string name="setup_input_timer_description">Select if timer control should be switched on</string>
+    <string name="setup_input_timer_header">Timer</string>
+    <string name="setup_insert_in_socket">Mount your Danfoss ECtemp™ Smart into the wall</string>
+    <string name="setup_installation_control_mode_floor">Floor</string>
+    <string name="setup_installation_control_mode_floor_room">Floor + room</string>
+    <string name="setup_installation_control_mode_room">Room</string>
+    <string name="setup_installation_floor_sensor_aube_10k">aube 10 kOhm (25°C)</string>
+    <string name="setup_installation_floor_sensor_devi_15k">DEVI 15 kOhm (25°C)</string>
+    <string name="setup_installation_floor_sensor_eberle_33k">Eberle 33 kOhm (25°C)</string>
+    <string name="setup_installation_floor_sensor_ensto_47k">Ensto 47 kOhm (25°C)</string>
+    <string name="setup_installation_floor_sensor_fenix_10k">FENIX 10 kOhm (25°C)</string>
+    <string name="setup_installation_floor_sensor_oj_12k">OJ 12 kOhm (25°C)</string>
+    <string name="setup_installation_floor_sensor_raychem_10k">Raychem 10 kOhm (25°C)</string>
+    <string name="setup_installation_floor_sensor_teplolux_6k8">Teplolux 6,8 kOhm (25°C)</string>
+    <string name="setup_installation_floor_sensor_warmup_12k">Warmup 12 kOhm (25°C)</string>
+    <string name="setup_installation_flooring_type_carpet">Carpet</string>
+    <string name="setup_installation_flooring_type_hardwood">Hardwood</string>
+    <string name="setup_installation_flooring_type_laminate">Laminate</string>
+    <string name="setup_installation_flooring_type_tiles">Tiles</string>
+    <string name="setup_installation_room_type_bathroom">Bathroom</string>
+    <string name="setup_installation_room_type_bedroom">Bedroom</string>
+    <string name="setup_installation_room_type_kitchen">Kitchen</string>
+    <string name="setup_installation_room_type_living_room">Living room</string>
+    <string name="setup_installation_timer_off">Off</string>
+    <string name="setup_installation_timer_on">On</string>
+    <string name="setup_name_already_exists">Name must be unique</string>
+    <string name="setup_name_length_error">"Name can't be more than 32 characters long"</string>
+    <string name="setup_name_max_length">"Name can't be more than 32 characters long"</string>
+    <string name="setup_name_must_be_supplied">A name must be supplied</string>
+    <string name="setup_password_max_length">"Password can't be more than 32 characters long"</string>
+    <string name="setup_password_max_length_long">"Password can't be more than 63 characters long"</string>
+    <string name="setup_peer_not_connected_error_message">Cannot send message due to no connection to thermostat</string>
+    <string name="setup_peer_not_connected_error_title">Error</string>
+    <string name="setup_permission_denied_body">The permission is needed in order to continue setup</string>
+    <string name="setup_permission_denied_title">Missing permission</string>
+    <string name="setup_permission_request_body">The app needs your permission</string>
+    <string name="setup_permission_request_title">Permissions</string>
+    <string name="setup_phase_add_house">Add house</string>
+    <string name="setup_phase_connect">Connect</string>
+    <string name="setup_phase_house_name_default">New house</string>
+    <string name="setup_phase_name_house_header">Name house</string>
+    <string name="setup_phase_name_phone_header">Name phone</string>
+    <string name="setup_phase_name_phone_hint">Name of this phone:</string>
+    <string name="setup_phase_name_room_header">Name room</string>
+    <string name="setup_phase_name_room_hint">Room name:</string>
+    <string name="setup_phase_navigation_confirm">Confirm</string>
+    <string name="setup_phase_navigation_continue">Continue</string>
+    <string name="setup_phase_navigation_help">Help</string>
+    <string name="setup_phase_no_ap_found">"Couldn't find your thermostat, make sure it's in AP mode and try again"</string>
+    <string name="setup_phase_one_searching_for_device">Searching for thermostat</string>
+    <string name="setup_phase_one_step_one_above_image">Your new thermostat should look like this</string>
+    <string name="setup_phase_one_step_one_below_image">Your thermostat needs to be connected to your Wi-Fi network. This will guide you through the steps</string>
+    <string name="setup_phase_one_step_one_title">Setup of thermostat</string>
+    <string name="setup_phase_one_step_two_above_image">Above image step 2</string>
+    <string name="setup_phase_one_step_two_below_image">Below image step 2</string>
+    <string name="setup_phase_one_step_two_title">Setup step 2</string>
+    <string name="setup_phase_one_title">Setup</string>
+    <string name="setup_phase_performing_pairing_header">Pairing with device</string>
+    <string name="setup_phase_room_name_default">New room</string>
+    <string name="setup_phase_select_house">Select house</string>
+    <string name="setup_phase_select_thermostat">Select your thermostat</string>
+    <string name="setup_phase_setup_complete_body">Congratulations on setting up your new thermostat, press done to continue to start controlling your thermostat</string>
+    <string name="setup_phase_setup_complete_done">Done</string>
+    <string name="setup_phase_setup_complete_title">Setup complete</string>
+    <string name="setup_phase_technician_incomplete">This thermostat has not been set up by a technician.</string>
+    <string name="setup_phase_technician_incomplete_button">Go to technician setup</string>
+    <string name="setup_phase_wifi_connect">Connect to Wi-Fi</string>
+    <string name="setup_phase_wifi_hint_password">Password</string>
+    <string name="setup_phase_wifi_hint_ssid">SSID</string>
+    <string name="setup_phase_wifi_rescan">Rescan</string>
+    <string name="setup_phase_wifi_select_title">Select network</string>
+    <string name="setup_phase_wifi_setup_connection_title">Setup connection</string>
+    <string name="setup_phase_wifi_setup_first_step">Open Settings on your phone</string>
+    <string name="setup_phase_wifi_setup_second_step">Select Wi-Fi</string>
+    <string name="setup_phase_wifi_setup_third_step">Select the network</string>
+    <string name="setup_phase_wifi_title">Enter WiFi information</string>
+    <string name="setup_replace_header">Are you replacing a Danfoss ECtemp™ Touch?</string>
+    <string name="setup_replace_insert_thermostat">Install the new thermostat</string>
+    <string name="setup_replace_new_button">Setup new ECtemp™ Smart</string>
+    <string name="setup_replace_paragraph">If your Danfoss ECtemp™ Smart is to replace an existing Danfoss ECtemp™ Touch, it is possible to copy the configuration using ”Replace Danfoss ECtemp™ Touch”</string>
+    <string name="setup_replace_reaplce_button">Replace ECtemp™ Touch</string>
+    <string name="setup_select">Select setup</string>
+    <string name="setup_ssid_max_length">"Network can't be more than 32 characters long"</string>
+    <string name="setup_ssid_must_be_supplied">Network must be supplied</string>
+    <string name="setup_technician_another_thermostat">Setup another thermostat</string>
+    <string name="setup_technician_continue_body">"You are now able to finish the user setup of the thermostat, or you can choose to setup the next thermostat. 
+
+Note - if you continue to setup a new thermostat, then the setup of the current will not be complete and needs to be finalized later."</string>
+    <string name="setup_technician_continue_header">Continue to user setup</string>
+    <string name="setup_technician_continue_new_button">Setup another thermostat</string>
+    <string name="setup_technician_continue_user_button">Finish the user setup</string>
+    <string name="setup_technician_continue_user_setup">Continue to make ready to use</string>
+    <string name="setup_technician_control_mode_title">Choose control mode</string>
+    <string name="setup_technician_enter_hexa_code">Enter Hexa-code</string>
+    <string name="setup_technician_enter_hexa_code_explanation">Find HEXAcode in the existing Danfoss ECtemp™ Touch thermostat before you remove it</string>
+    <string name="setup_technician_existing_thermostat">Exchange thermostat</string>
+    <string name="setup_technician_flooring_type_title">Choose flooring type</string>
+    <string name="setup_technician_help_control">Select whether room temperature should be controlled using a room + floor sensor or a floor sensor only.</string>
+    <string name="setup_technician_help_control_title">Regulation</string>
+    <string name="setup_technician_help_flooring">Select the flooring used to set default comfort, eco, min, and max floor temperatures (°C). Tiles: 27, 20, 23, and 35. Hardwood: 25, 20, 22, and 33. Laminate: 24, 20, 21, and 33. Carpet: 23, 20, 20, and 35.</string>
+    <string name="setup_technician_help_flooring_title">Flooring</string>
+    <string name="setup_technician_help_output">Select the approximate load of the heating element (W) to estimate installation power consumption (kWh).</string>
+    <string name="setup_technician_help_output_title">Output</string>
+    <string name="setup_technician_help_room">Select the room type to set default comfort and eco temperatures (°C). Living room: 21 and 17. Bedroom: 19 and 17. Bathroom: 23 and 17. Kitchen: 20 and 17.</string>
+    <string name="setup_technician_help_room_title">Room type</string>
+    <string name="setup_technician_help_sensor">Select the installed floor sensor. If the installed sensor is not available, select a similar type. Sensor resistance and current measured temperature are shown in parentheses ().</string>
+    <string name="setup_technician_help_sensor_title">Sensor type</string>
+    <string name="setup_technician_help_timer">"Select timer ON to optimize energy savings.
+Time periods can be altered later on."</string>
+    <string name="setup_technician_hex_not_valid">The HEXA string is not valid</string>
+    <string name="setup_technician_hex_not_valid_title">Error</string>
+    <string name="setup_technician_hexa_input_label">Hexa-code</string>
+    <string name="setup_technician_name_thermostat">Name thermostat</string>
+    <string name="setup_technician_new_thermostat">New thermostat</string>
+    <string name="setup_technician_option">Setup for technician</string>
+    <string name="setup_technician_output_title">Choose output</string>
+    <string name="setup_technician_room_type_title">Choose room type</string>
+    <string name="setup_technician_saving_data">Saving data</string>
+    <string name="setup_technician_sensor_type_title">Choose sensor type</string>
+    <string name="setup_technician_warning_body">For safety reasons we recommend that only professional technicians set up thermostats.</string>
+    <string name="setup_technician_warning_title">Are you a technician?</string>
+    <string name="setup_technician_welcome_body">"For safety reasons we recommend that the following configuration is done only by a professional technician.
+
+
+Wrong configuration can cause damage to your heating system."</string>
+    <string name="setup_technician_welcome_header">Are you a technician?</string>
+    <string name="setup_themostat_connecting">The phone is now connecting to your thermostat</string>
+    <string name="setup_thermostat_adding_pairing_failed_error_message">The pairing was not added.</string>
+    <string name="setup_thermostat_adding_pairing_failed_error_title">Error</string>
+    <string name="setup_thermostat_communicating">The phone is getting information from your thermostat</string>
+    <string name="setup_thermostat_confirm_explanation">When the circle is green confirm with a single touch</string>
+    <string name="setup_thermostat_confirmed_header">Congratulations, the thermostat is now connected</string>
+    <string name="setup_thermostat_connecting_to_cloud">Thermostat is connecting to the cloud</string>
+    <string name="setup_thermostat_connection_established">Congratulations, the thermostat is now connected</string>
+    <string name="setup_thermostat_full_description">The thermostat can only be connected to 10 different phones at a time. Please select a phone to remove from the thermostat to allow this phone to connect.</string>
+    <string name="setup_thermostat_full_header">Thermostat full</string>
+    <string name="setup_thermostat_full_saving">Updating phones on thermostat</string>
+    <string name="setup_thermostat_saving">The setup is now being saved to the thermostat</string>
+    <string name="setup_thermostat_technician_saved">The setup has been saved to the thermostat, and it is ready for regulation.</string>
+    <string name="setup_thermostat_user_saved">The setup has been saved to the thermostat, and it is ready for use.</string>
+    <string name="setup_user_succes_start_button">Start the app</string>
+    <string name="setup_welcome_demo_button">Demo</string>
+    <string name="setup_welcome_first_paragraph">"You have a choice between 3 options to get the system started.
+
+To get full benefit of your thermostat, you need to spend up to 5 minutes to connect your phone and setup the thermostat."</string>
+    <string name="setup_welcome_header">Congratulations on your new Danfoss ECtemp™ Smart system</string>
+    <string name="setup_welcome_introduction">Congratulations with your new controller, follow this guide to connect it to your app</string>
+    <string name="setup_welcome_start_button">Start setup</string>
+    <string name="share_house.permission.description">Is the receiver of the house allowed to remove users from the thermostats?</string>
+    <string name="share_house.permission.header">Permissions</string>
+    <string name="share_house.receive.error_generic">"Something went wrong, didn't receive configuration"</string>
+    <string name="share_house.receive.error_wrong_otp">"Couldn't find other device, please double-check the code"</string>
+    <string name="share_house.receive.header">Enter pairing code</string>
+    <string name="share_house.receive.otp_length_error">Code must have length 7</string>
+    <string name="share_house.receive.otp_placeholder">Pairingscode</string>
+    <string name="share_house.receive.receiving_setup">Receiving configuration from other device...</string>
+    <string name="share_house.receive.setup_complete">Received configuration, setup complete</string>
+    <string name="share_house.send.connecting">Connecting to other device...</string>
+    <string name="share_house.send.error_generic">"Something went wrong, couldn't send configuration"</string>
+    <string name="share_house.send.error_generic_header">An error occurred</string>
+    <string name="share_house.send.error_pairing_table_full">"One or more thermostats already have ten users, can't add a new user"</string>
+    <string name="share_house.send.error_peer_connection">"Couldn't send configuration, connection to the other app was lost"</string>
+    <string name="share_house.send.error_sdg_connection">"Couldn't send configuration, connection to the server was lost"</string>
+    <string name="share_house.send.error_unconnected_thermostats">"Can't share house configuration when there are unconnected thermostats"</string>
+    <string name="share_house.send.getting_otp">Contacting server, please wait...</string>
+    <string name="share_house.send.otp_description">"To share the current house please open the app on the phone that is to receive the setup and select the menu \"Receive house\".
+When prompted for a pairingscode please use the code below:"</string>
+    <string name="share_house.send.otp_header">Share house</string>
+    <string name="share_house.send.otp_timeout">The code has expired, hit next to generate a new one and try again</string>
+    <string name="share_house.send.pairing">Pairing with other device...</string>
+    <string name="share_house.send.sending_setup">Sending configuration to other device...</string>
+    <string name="share_house.send.setup_complete">Sent configuration, setup complete</string>
+    <string name="show_consumption">Consumption</string>
+    <string name="show_thermostat_info">Thermostat information</string>
+    <string name="skip">Skip</string>
+    <string name="software_version">Software version</string>
+    <string name="splash_screen_devi_reg">ECtemp Smart</string>
+    <string name="splash_screen_electric_floor">Electric floor heating control</string>
+    <string name="system_debug_title">Debug</string>
+    <string name="system_status.mark_as_resolved">Mark as resolved</string>
+    <string name="system_status_alarm_disconnected_description">Connection to floor sensor is lost</string>
+    <string name="system_status_alarm_disconnected_header">Floor sensor disconnected</string>
+    <string name="system_status_alarm_overheat_description">Thermostat is overheated, heating is turned off</string>
+    <string name="system_status_alarm_overheat_header">Thermostat overheated</string>
+    <string name="system_status_alarm_short_circuit_description">Floor sensor short-circuited</string>
+    <string name="system_status_alarm_short_circuit_header">Floor sensor short-circuited</string>
+    <string name="system_status_alarm_unrecoverable_description">Unrecoverable error. Contact service.</string>
+    <string name="system_status_alarm_unrecoverable_header">Unrecoverable error</string>
+    <string name="system_status_lost_connection_description">The connection to the thermostat has been lost.</string>
+    <string name="system_status_lost_connection_header">No connection</string>
+    <string name="system_status_ok">Everything looks okay!</string>
+    <string name="technician_setup_title">Technician Setup</string>
+    <string name="thermostat_on">Thermostat on</string>
+    <string name="tpa_permission_storage_body">Permission to use the filesystem is needed in order to handle app updates.</string>
+    <string name="tpa_permission_storage_header">Permission</string>
+    <string name="turn_off_thermostat">Turn off thermostat</string>
+    <string name="turn_on_thermostat">Turn on thermostat</string>
+    <string name="ui_brightness">Screen brightness</string>
+    <string name="update_available">New version available for test.</string>
+    <string name="update_available_ticker">Update available for %s</string>
+    <string name="update_dialog_message">"%s is available.
+Install update?"</string>
+    <string name="update_dialog_negative_button">Dismiss</string>
+    <string name="update_dialog_neutral_button">Release Notes</string>
+    <string name="update_dialog_positive_button">Install</string>
+    <string name="update_dialog_title">Update available</string>
+    <string name="uuid_bootloader">10020007-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_client_characteristic_config">00002902-0000-1000-8000-00805f9b34fb</string>
+    <string name="uuid_device_name">10020006-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_eco2service">10020000-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_epoc_time">10020008-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_error_code">10020009-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_language">1002000A-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_manual_temperature">10020005-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_ota">00060000-F8CE-11E4-ABF4-0002A5D5C51B</string>
+    <string name="uuid_ota_writer">00060001-F8CE-11E4-ABF4-0002A5D5C51B</string>
+    <string name="uuid_pin">10020001-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_schedule1">1002000D-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_schedule2">1002000E-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_schedule3">1002000F-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_settings">10020003-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_setup_secret">1002000B-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_thermostat_code">10020002-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_undefined1">10020010-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_undefined2">10020011-2749-0001-0000-00805F9B042F</string>
+    <string name="uuid_undefined3">10020012-2749-0001-0000-00805f9b042f</string>
+    <string name="uuid_undefined4">10020004-2749-0001-0000-00805f9b042f</string>
+    <string name="uuid_update_token">1002000C-2749-0001-0000-00805F9B042F</string>
+    <string name="v7_preference_off">OFF</string>
+    <string name="v7_preference_on">ON</string>
+    <string name="vacation_temperature">Vacation temperature</string>
+    <string name="warning_by_temperature">Send warning if temperature is below</string>
+</resources>

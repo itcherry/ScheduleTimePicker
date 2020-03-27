@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1165bf</color>
+    <color name="colorPrimaryDark">#0c4785</color>
+    <color name="colorAccent">@color/beach</color>
+
+    <color name="berry">#1165bf</color>
+    <color name="newberry">#1576d0</color>
+    <color name="pacific">#2c7a96</color>
+    <color name="beach">#119fbf</color>
+    <color name="midnight">#2e3545</color>
+    <color name="night">#2e3545</color>
+    <color name="concrete">#657688</color>
+    <color name="brick">#D94514</color>
+    <color name="mint">#37bf72</color>
+    <color name="green">#0E6D39</color>
+    <color name="tangerine">#f2ac16</color>
+    <color name="dust">#f6f6f6</color>
+    <color name="silver">#b6babf</color>
+    <color name="stone">#85898c</color>
+    <color name="darkStone">#57595e</color>
+    <color name="lightStone">#86898c</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000</color>
+    <color name="gray">#fafafa</color>
+    <color name="grayPrimaryNotActive">#bdbdbd</color>
+    <color name="grayNotActive">#e0e0e0</color>
+    <color name="grayTransparent50">#80fafafa</color>
+    <color name="error_red">#FFDD2C00</color>
+    <color name="semi_transparent">#14000000</color>
+    <color name="lightBlue">#70A2D8</color>
+    <color name="skyBlue">#9CC5FA</color>
+    <color name="lightBerry">#4083cb</color>
+    <color name="berryHighlight">#994083CB</color>
+    <color name="darkBerry">#0c4785</color>
+    <color name="lightGrey">#d6e1ee</color>
+    <color name="night600">#747883</color>
+    <color name="greyStatus">#6C7B8A</color>
+    <color name="transparentGrey60">#996C7B8A</color>
+    <color name="transparentGreyRipple">#1f000000</color>
+    <color name="transparentBerryRipple">#1A1165bf</color>
+    <color name="mint800">#2b5f41</color>
+    <color name="mint100">#d7f2e3</color>
+</resources>
