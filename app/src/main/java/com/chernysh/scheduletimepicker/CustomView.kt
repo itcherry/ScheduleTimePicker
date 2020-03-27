@@ -197,6 +197,11 @@ class CustomView @JvmOverloads constructor(
         var angle = getAngleFromDecart(event.x, event.y)
         var minute = angle.angleToMinute()
 
+        if(minute % DOT_EACH_N_MINUTES != 0) {
+            minute -= minute % DOT_EACH_N_MINUTES
+            angle = minute.minuteToAngle()
+        }
+
         return when (event.action) {
             ACTION_DOWN -> {
                 drawParamHolder.timeRanges.forEach {
@@ -210,7 +215,8 @@ class CustomView @JvmOverloads constructor(
                         return@forEach
                     }
                 }
-                if (drawParamHolder.timeRanges.all { !it.isStartTimeMoving && !it.isEndTimeMoving && (minute < it.startTime || minute > it.endTime) }) {
+                if ((drawParamHolder.timeRanges.size < MAX_RANGES_COUNT) &&
+                    drawParamHolder.timeRanges.all { !it.isStartTimeMoving && !it.isEndTimeMoving && (minute < it.startTime || minute > it.endTime) }) {
                     drawParamHolder.timeRanges.add(createTimeRange(minute))
                     invalidate()
                 }
@@ -227,19 +233,28 @@ class CustomView @JvmOverloads constructor(
             ACTION_MOVE -> {
                 val movingTimeRange =
                     drawParamHolder.timeRanges.firstOrNull { it.isStartTimeMoving || it.isEndTimeMoving }
-                movingTimeRange?.let {
+                movingTimeRange?.let { timeRange ->
                     Log.d("TAG", "angle: $angle, minute: $minute, x: ${event.x}, y: ${event.y}")
-                    if (it.isStartTimeMoving) {
-                        it.startAngle = angle
-                        it.startTime = minute
-                        it.startTimeRectF = getThumbRectFByAngle(angle)
-                    } else if (it.isEndTimeMoving) {
-                        it.endAngle = angle
-                        it.endTime = minute
-                        it.endTimeRectF = getThumbRectFByAngle(angle)
+                    if (timeRange.isStartTimeMoving) {
+                        if ((minute < timeRange.endTime - 3 * DOT_EACH_N_MINUTES) &&
+                            drawParamHolder.timeRanges.filter { (it != timeRange) && (timeRange.startTime > it.endTime) }
+                                .all { minute > it.endTime + 3 * DOT_EACH_N_MINUTES }
+                        ) {
+                            timeRange.startAngle = angle
+                            timeRange.startTime = minute
+                            timeRange.startTimeRectF = getThumbRectFByAngle(angle)
+                        }
+                    } else if (timeRange.isEndTimeMoving) {
+                        if ((minute > timeRange.startTime + 3 * DOT_EACH_N_MINUTES) &&
+                            drawParamHolder.timeRanges.filter { (it != timeRange) && (it.startTime > timeRange.endTime) }
+                                .all { minute < (it.startTime - 3 * DOT_EACH_N_MINUTES) }
+                        ) {
+                            timeRange.endAngle = angle
+                            timeRange.endTime = minute
+                            timeRange.endTimeRectF = getThumbRectFByAngle(angle)
+                        }
                     }
                     invalidate()
-
                 }
                 return true
             }
@@ -250,14 +265,14 @@ class CustomView @JvmOverloads constructor(
     }
 
     private fun createTimeRange(minute: Int): TimeRange {
-        val startMinute = if (minute - 30 >= 0) {
-            minute - 30
+        val startMinute = if (minute - 3 * DOT_EACH_N_MINUTES >= 0) {
+            minute - 3 * DOT_EACH_N_MINUTES
         } else {
             0
         }
 
-        val endMinute = if (minute + 30 <= MINUTES_IN_HOUR * HOURS_IN_DAY) {
-            minute + 30
+        val endMinute = if (minute + 3 * DOT_EACH_N_MINUTES <= MINUTES_IN_HOUR * HOURS_IN_DAY) {
+            minute + 3 * DOT_EACH_N_MINUTES
         } else {
             MINUTES_IN_HOUR * HOURS_IN_DAY
         }
@@ -275,23 +290,14 @@ class CustomView @JvmOverloads constructor(
         )
     }
 
-    /*private fun getThumbRectFByMinute(minute: Int): RectF {
-        val startRangeCenterPointF =
-            getDecartCoordinates(drawParamHolder.radius, minute.minuteToAngle())
-
-        return RectF(
-            startRangeCenterPointF.x - thumbRadius,
-            startRangeCenterPointF.y - thumbRadius,
-            startRangeCenterPointF.x + thumbRadius,
-            startRangeCenterPointF.y + thumbRadius
-        )
-    }*/
-
     private fun getThumbRectFByAngle(angle: Float): RectF {
         val startRangeCenterPointF =
             getDecartCoordinates(drawParamHolder.radius, angle - 90)
 
-        Log.d("TAG", "getThumbRectFByAngle(x: ${startRangeCenterPointF.x}, y: ${startRangeCenterPointF.y})")
+        Log.d(
+            "TAG",
+            "getThumbRectFByAngle(x: ${startRangeCenterPointF.x}, y: ${startRangeCenterPointF.y})"
+        )
         return RectF(
             startRangeCenterPointF.x - thumbRadius,
             startRangeCenterPointF.y - thumbRadius,
@@ -345,5 +351,6 @@ class CustomView @JvmOverloads constructor(
         private const val MINUTES_IN_HOUR = 60
         private const val DEGREES_IN_CIRLCE = 360
         private const val DOT_EACH_N_MINUTES = 15
+        private const val MAX_RANGES_COUNT = 4
     }
 }
