@@ -1,8 +1,6 @@
 package com.chernysh.scheduletimepicker
 
-import android.graphics.Rect
 import android.graphics.RectF
-import java.util.*
 
 /**
  * Entity for selection one of time ranges.
@@ -12,24 +10,33 @@ import java.util.*
  * @param startTime - time in minutes when range is starting
  * @param endTime - time in minutes when range finishing
  */
-data class TimeRange(var startTime: Int,
-                     var endTime: Int,
-                     var startAngle: Float,
-                     var endAngle: Float,
-                     var startTimeRectF: RectF,
-                     var endTimeRectF: RectF,
-                     var isStartTimeMoving: Boolean = false,
-                     var isEndTimeMoving: Boolean = false) {
+data class TimeRange(
+    var startTime: Int,
+    var endTime: Int,
+    var startAngle: Float,
+    var endAngle: Float,
+    var startTimeRectF: RectF,
+    var endTimeRectF: RectF,
+    var isStartTimeMoving: Boolean = false,
+    var isEndTimeMoving: Boolean = false,
+    var lastMovedTime: Int = -1,
+    var isUnderIntersectionFromStart: Boolean = false,
+    var isUnderIntersectionFromEnd: Boolean = false
+) {
+    fun isUnderIntersection() = isUnderIntersectionFromStart || isUnderIntersectionFromEnd
 
-    fun getStartTimeDate() = Calendar.getInstance().apply {
-        clear()
-        set(Calendar.HOUR_OF_DAY, startTime / 24)
-        set(Calendar.MINUTE, startTime % 24)
+    fun getSweepAngle() = if (endAngle >= startAngle) {
+        endAngle - startAngle
+    } else {
+        endAngle + 360 - startAngle
     }
 
-    fun getEndTimeDate() = Calendar.getInstance().apply {
-        clear()
-        set(Calendar.HOUR_OF_DAY, endTime / 24)
-        set(Calendar.MINUTE, endTime % 24)
-    }
+    fun isCompletelyIntersectedBy(movingTimeRange: TimeRange?) =
+        if (movingTimeRange != null) {
+            (this != movingTimeRange) &&
+                    (this.endAngle <= movingTimeRange.endAngle) &&
+                    (this.startAngle >= movingTimeRange.startAngle)
+        } else {
+            false
+        }
 }

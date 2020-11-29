@@ -7,7 +7,7 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <com.chernysh.scheduletimepicker.CustomView
+    <com.chernysh.scheduletimepicker.TimePickerView
         android:id="@+id/scheduleTimePicker"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
