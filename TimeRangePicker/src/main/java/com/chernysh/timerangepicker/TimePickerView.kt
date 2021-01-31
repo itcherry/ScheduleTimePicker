@@ -29,583 +29,517 @@ import com.chernysh.timerangepicker.internal.getAngleFromDecart
 import io.reactivex.subjects.PublishSubject
 import kotlin.math.min
 
+class TimePickerView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
+  : View(context, attrs, defStyleAttr) {
 
-class TimePickerView @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr) {
+  // Math fields
+  private val timePickerDataHolder: TimePickerDataHolder = TimePickerDataHolder()
 
-    // Math fields
-    private val timePickerDataHolder: TimePickerDataHolder =
-        TimePickerDataHolder()
+  // Sizes
+  private var smallDotRadius: Float = SMALL_DOT_RADIUS.dpToPx(context)
+  private var thumbRadius = THUMB_RADIUS.dpToPx(context)
+  private var minutesPerDot = DOT_EACH_N_MINUTES_DEFAULT
+  private var maxRangesCount = MAX_RANGES_COUNT_DEFAULT
+  private var isAmPmTextFormat = IS_AM_PM_TIME_FORMAT_DEFAULT
 
-    // Sizes
-    private var smallDotRadius: Float = SMALL_DOT_RADIUS.dpToPx(context)
-    private var thumbRadius = THUMB_RADIUS.dpToPx(context)
-    private var minutesPerDot =
-        DOT_EACH_N_MINUTES_DEFAULT
-    private var maxRangesCount =
-        MAX_RANGES_COUNT_DEFAULT
-    private var isAmPmTextFormat =
-        IS_AM_PM_TIME_FORMAT_DEFAULT
+  // Paints
+  private val paintArcTimeRange: Paint
+  private val paintArcTimeRangeIntersected: Paint
+  private val paintThumbTimeRange: Paint
+  private val paintThumbTimeRangeIntersected: Paint
+  private val paintCircleSecondary: Paint
+  private val paintCircleTime: Paint
+  private val paintCenterTime: Paint
 
-    // Paints
-    private val paintArcTimeRange: Paint
-    private val paintArcTimeRangeIntersected: Paint
-    private val paintThumbTimeRange: Paint
-    private val paintThumbTimeRangeIntersected: Paint
-    private val paintCircleSecondary: Paint
-    private val paintCircleTime: Paint
-    private val paintCenterTime: Paint
+  // Animators
+  private val centerTimeAnimator: ValueAnimator
 
-    // Animators
-    private val centerTimeAnimator: ValueAnimator
+  // Dynamic styles
+  private val arcColorStyleable = R.styleable.TimePickerView_tpv_range_arc_color
+  private val arcThicknessStyleable = R.styleable.TimePickerView_tpv_range_arc_thickness
 
-    // Dynamic styles
-    private val arcColorStyleable =
-        R.styleable.TimePickerView_tpv_range_arc_color
-    private val arcThicknessStyleable =
-        R.styleable.TimePickerView_tpv_range_arc_thickness
+  private val centerTimeTextSizeStyleable = R.styleable.TimePickerView_tpv_center_time_text_size
+  private val centerTimeTextColorStyleable = R.styleable.TimePickerView_tpv_center_time_text_color
+  private val centerTimeTextFontStyleable = R.styleable.TimePickerView_tpv_center_time_text_font
+  private val centerTimeAnimationDurationStyleable =
+    R.styleable.TimePickerView_tpv_center_time_animation_duration_millis
 
-    private val centerTimeTextSizeStyleable =
-        R.styleable.TimePickerView_tpv_center_time_text_size
-    private val centerTimeTextColorStyleable =
-        R.styleable.TimePickerView_tpv_center_time_text_color
-    private val centerTimeTextFontStyleable =
-        R.styleable.TimePickerView_tpv_center_time_text_font
-    private val centerTimeAnimationDurationStyleable =
-        R.styleable.TimePickerView_tpv_center_time_animation_duration_millis
+  private val circleTimeTextSizeStyleable = R.styleable.TimePickerView_tpv_circle_time_text_size
+  private val circleTimeTextColorStyleable = R.styleable.TimePickerView_tpv_circle_time_text_color
+  private val circleTimeTextFontStyleable = R.styleable.TimePickerView_tpv_circle_time_text_font
 
-    private val circleTimeTextSizeStyleable =
-        R.styleable.TimePickerView_tpv_circle_time_text_size
-    private val circleTimeTextColorStyleable =
-        R.styleable.TimePickerView_tpv_circle_time_text_color
-    private val circleTimeTextFontStyleable =
-        R.styleable.TimePickerView_tpv_circle_time_text_font
+  private val dotColorStyleable = R.styleable.TimePickerView_tpv_dot_color
+  private val minutesPerDotStyleable = R.styleable.TimePickerView_tpv_minutes_per_dot
+  private val dotRadiusStyleable = R.styleable.TimePickerView_tpv_dot_radius
 
-    private val dotColorStyleable =
-        R.styleable.TimePickerView_tpv_dot_color
-    private val minutesPerDotStyleable =
-        R.styleable.TimePickerView_tpv_minutes_per_dot
-    private val dotRadiusStyleable =
-        R.styleable.TimePickerView_tpv_dot_radius
+  private val thumbRadiusStyleable = R.styleable.TimePickerView_tpv_thumb_radius
+  private val thumbColorStyleable = R.styleable.TimePickerView_tpv_thumb_color
 
-    private val thumbRadiusStyleable =
-        R.styleable.TimePickerView_tpv_thumb_radius
-    private val thumbColorStyleable =
-        R.styleable.TimePickerView_tpv_thumb_color
+  private val maxRangesCountStyleable = R.styleable.TimePickerView_tpv_max_ranges_count
+  private val isAmPmTimeFormatStyleable = R.styleable.TimePickerView_tpv_use_am_pm_time_format
+  private val rangeIntersectionColorStyleable =
+    R.styleable.TimePickerView_tpv_range_intersection_color
 
-    private val maxRangesCountStyleable =
-        R.styleable.TimePickerView_tpv_max_ranges_count
-    private val isAmPmTimeFormatStyleable =
-        R.styleable.TimePickerView_tpv_use_am_pm_time_format
-    private val rangeIntersectionColorStyleable =
-        R.styleable.TimePickerView_tpv_range_intersection_color
+  // Listeners
+  var timeRangesSelected: ((List<TimeRange>) -> Unit) = { }
+  private val timeRangesSelectedSubject = PublishSubject.create<List<TimeRange>>()
 
-    // Listeners
-    var timeRangesSelected: ((List<TimeRange>) -> Unit) = { }
-    private val timeRangesSelectedSubject = PublishSubject.create<List<TimeRange>>()
+  init {
+    val midnightColor = ContextCompat.getColor(context, R.color.midnight)
+    val brickColor = ContextCompat.getColor(context, R.color.brick)
+    val berryColor = ContextCompat.getColor(context, R.color.berry)
 
-    init {
-        val midnightColor = ContextCompat.getColor(
-            context,
-            R.color.midnight
+    with(context.obtainStyledAttributes(attrs, R.styleable.TimePickerView, defStyleAttr, 0)) {
+      with(PaintsInitialiser) {
+        val circleTimeTypeface = if (hasValue(circleTimeTextFontStyleable)) {
+          val circleTimeFontId = getResourceId(circleTimeTextFontStyleable, -1)
+          ResourcesCompat.getFont(context, circleTimeFontId)
+        } else null
+
+        val centerTimeTypeface = if (hasValue(centerTimeTextFontStyleable)) {
+          val circleTimeFontId = getResourceId(centerTimeTextFontStyleable, -1)
+          ResourcesCompat.getFont(context, circleTimeFontId)
+        } else null
+
+        paintArcTimeRange = getArcTimeRangePaint(
+          getColor(arcColorStyleable, berryColor),
+          getDimensionPixelSize(arcThicknessStyleable, 8.dpToPx(context).toInt()).toFloat()
         )
-        val brickColor = ContextCompat.getColor(
-            context,
-            R.color.brick
+        paintArcTimeRangeIntersected = getArcTimeRangeIntersectedPaint(
+          getColor(rangeIntersectionColorStyleable, brickColor),
+          getDimensionPixelSize(arcThicknessStyleable, 8.dpToPx(context).toInt()).toFloat()
         )
-        val berryColor = ContextCompat.getColor(
-            context,
-            R.color.berry
+        paintCircleTime = getCircleTimePaint(
+          getColor(circleTimeTextColorStyleable, midnightColor),
+          getDimensionPixelSize(circleTimeTextSizeStyleable, 20.spToPx().toInt()).toFloat(),
+          circleTimeTypeface ?: Typeface.DEFAULT
         )
-
-        with(
-            context.obtainStyledAttributes(
-                attrs,
-                R.styleable.TimePickerView, defStyleAttr, 0
-            )
-        ) {
-            with(
-                PaintsInitialiser(
-                    context
-                )
-            ) {
-                val circleTimeTypeface = if (hasValue(circleTimeTextFontStyleable)) {
-                    val circleTimeFontId = getResourceId(circleTimeTextFontStyleable, -1)
-                    ResourcesCompat.getFont(context, circleTimeFontId)
-                } else null
-
-                val centerTimeTypeface = if (hasValue(centerTimeTextFontStyleable)) {
-                    val circleTimeFontId = getResourceId(centerTimeTextFontStyleable, -1)
-                    ResourcesCompat.getFont(context, circleTimeFontId)
-                } else null
-
-                paintArcTimeRange = getArcTimeRangePaint(
-                    getColor(arcColorStyleable, berryColor),
-                    getDimensionPixelSize(
-                        arcThicknessStyleable,
-                        8.dpToPx(context).toInt()
-                    ).toFloat()
-                )
-                paintArcTimeRangeIntersected = getArcTimeRangeIntersectedPaint(
-                    getColor(rangeIntersectionColorStyleable, brickColor),
-                    getDimensionPixelSize(
-                        arcThicknessStyleable,
-                        8.dpToPx(context).toInt()
-                    ).toFloat()
-                )
-                paintCircleTime = getCircleTimePaint(
-                    getColor(circleTimeTextColorStyleable, midnightColor),
-                    getDimensionPixelSize(
-                        circleTimeTextSizeStyleable,
-                        20.spToPx().toInt()
-                    ).toFloat(),
-                    circleTimeTypeface ?: Typeface.DEFAULT
-                )
-                paintCenterTime = getCenterTimePaint(
-                    getColor(centerTimeTextColorStyleable, midnightColor),
-                    getDimensionPixelSize(
-                        centerTimeTextSizeStyleable,
-                        56.spToPx().toInt()
-                    ).toFloat(),
-                    centerTimeTypeface ?: Typeface.DEFAULT
-                )
-                paintThumbTimeRange =
-                    getThumbTimeRangePaint(getColor(thumbColorStyleable, berryColor))
-                paintThumbTimeRangeIntersected = getThumbTimeRangeIntersectedPaint(
-                    getColor(
-                        rangeIntersectionColorStyleable,
-                        brickColor
-                    )
-                )
-                paintCircleSecondary =
-                    getCircleSecondaryPaint(getColor(dotColorStyleable, midnightColor))
-
-                smallDotRadius = getDimensionPixelSize(
-                    dotRadiusStyleable,
-                    SMALL_DOT_RADIUS.dpToPx(context).toInt()
-                ).toFloat()
-                thumbRadius = getDimensionPixelSize(
-                    thumbRadiusStyleable,
-                    THUMB_RADIUS.dpToPx(context).toInt()
-                ).toFloat()
-                minutesPerDot = getInt(
-                    minutesPerDotStyleable,
-                    DOT_EACH_N_MINUTES_DEFAULT
-                )
-                maxRangesCount = getInt(
-                    maxRangesCountStyleable,
-                    MAX_RANGES_COUNT_DEFAULT
-                )
-                isAmPmTextFormat = getBoolean(
-                    isAmPmTimeFormatStyleable,
-                    IS_AM_PM_TIME_FORMAT_DEFAULT
-                )
-            }
-
-            centerTimeAnimator = getCenterTimeAnimator()
-
-            recycle()
-        }
-    }
-
-    private fun TypedArray.getCenterTimeAnimator() =
-        ValueAnimator.ofInt(255, 0)
-            .apply {
-                duration = getInt(
-                    centerTimeAnimationDurationStyleable,
-                    SELECTED_TIME_ANIMATION_DURATION
-                ).toLong()
-                interpolator = DecelerateInterpolator()
-                addUpdateListener {
-                    paintCenterTime.alpha = it.animatedValue as Int
-                    invalidate()
-                }
-                doOnEnd {
-                    paintCenterTime.alpha = 255
-                    timePickerDataHolder.resetLastMovedTime()
-                }
-            }
-
-    /*-----------------------------------
-     ------------ Measuring -------------
-     -----------------------------------*/
-
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val desiredWidth = suggestedMinimumWidth + paddingLeft + paddingRight
-        val measuredWidth = measureDimension(desiredWidth, widthMeasureSpec)
-
-        setMeasuredDimension(
-            measuredWidth,
-            measuredWidth
+        paintCenterTime = getCenterTimePaint(
+          getColor(centerTimeTextColorStyleable, midnightColor),
+          getDimensionPixelSize(centerTimeTextSizeStyleable, 56.spToPx().toInt()).toFloat(),
+          centerTimeTypeface ?: Typeface.DEFAULT
         )
+        paintThumbTimeRangeIntersected = getThumbTimeRangeIntersectedPaint(
+          getColor(rangeIntersectionColorStyleable, brickColor)
+        )
+        paintThumbTimeRange = getThumbTimeRangePaint(getColor(thumbColorStyleable, berryColor))
+        paintCircleSecondary = getCircleSecondaryPaint(getColor(dotColorStyleable, midnightColor))
+
+        smallDotRadius = getDimensionPixelSize(
+          dotRadiusStyleable, SMALL_DOT_RADIUS.dpToPx(context).toInt()
+        ).toFloat()
+        thumbRadius = getDimensionPixelSize(
+          thumbRadiusStyleable, THUMB_RADIUS.dpToPx(context).toInt()
+        ).toFloat()
+        minutesPerDot = getInt(minutesPerDotStyleable, DOT_EACH_N_MINUTES_DEFAULT)
+        maxRangesCount = getInt(maxRangesCountStyleable, MAX_RANGES_COUNT_DEFAULT)
+        isAmPmTextFormat = getBoolean(isAmPmTimeFormatStyleable, IS_AM_PM_TIME_FORMAT_DEFAULT)
+      }
+
+      centerTimeAnimator = getCenterTimeAnimator()
+
+      recycle()
+    }
+  }
+
+  private fun TypedArray.getCenterTimeAnimator() =
+    ValueAnimator.ofInt(255, 0)
+      .apply {
+        duration =
+          getInt(centerTimeAnimationDurationStyleable, SELECTED_TIME_ANIMATION_DURATION).toLong()
+        interpolator = DecelerateInterpolator()
+        addUpdateListener {
+          paintCenterTime.alpha = it.animatedValue as Int
+          invalidate()
+        }
+        doOnEnd {
+          paintCenterTime.alpha = 255
+          timePickerDataHolder.resetLastMovedTime()
+        }
+      }
+
+  /*-----------------------------------
+   ------------ Measuring -------------
+   -----------------------------------*/
+
+  override fun onMeasure(
+    widthMeasureSpec: Int,
+    heightMeasureSpec: Int
+  ) {
+    val desiredWidth = suggestedMinimumWidth + paddingLeft + paddingRight
+    val measuredWidth = measureDimension(desiredWidth, widthMeasureSpec)
+
+    setMeasuredDimension(
+      measuredWidth,
+      measuredWidth
+    )
+  }
+
+  private fun measureDimension(
+    desiredSize: Int,
+    measureSpec: Int
+  ): Int {
+    val specMode = MeasureSpec.getMode(measureSpec)
+    val specSize = MeasureSpec.getSize(measureSpec)
+
+    val result = when (specMode) {
+      MeasureSpec.EXACTLY -> specSize
+      MeasureSpec.AT_MOST -> min(desiredSize, specSize)
+      else -> desiredSize
     }
 
-    private fun measureDimension(desiredSize: Int, measureSpec: Int): Int {
-        val specMode = MeasureSpec.getMode(measureSpec)
-        val specSize = MeasureSpec.getSize(measureSpec)
-
-        val result = when (specMode) {
-            MeasureSpec.EXACTLY -> specSize
-            MeasureSpec.AT_MOST -> min(desiredSize, specSize)
-            else -> desiredSize
-        }
-
-        if (result < desiredSize) {
-            Log.e("ScheduleTimePicker", "The view is too small, the content might get cut")
-        }
-
-        return result
+    if (result < desiredSize) {
+      Log.e("TimeRangePicker", "The view is too small, the content might get cut")
     }
 
-    /*-----------------------------------
-     ----- Storing important values -----
-     -----------------------------------*/
+    return result
+  }
 
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
+  /*-----------------------------------
+   ----- Storing important values -----
+   -----------------------------------*/
 
-        val xpad = (paddingLeft + paddingRight).toFloat()
-        val width = w.toFloat() - xpad
+  override fun onSizeChanged(
+    w: Int,
+    h: Int,
+    oldw: Int,
+    oldh: Int
+  ) {
+    super.onSizeChanged(w, h, oldw, oldh)
 
-        val textRect = Rect()
-        paintCircleTime.getTextBounds("24", 0, 2, textRect);
+    val xpad = (paddingLeft + paddingRight).toFloat()
+    val width = w.toFloat() - xpad
 
-        timePickerDataHolder.apply {
-            radius = width / 2 - textRect.width() - 16.dpToPx(context)
-            top = paddingTop.toFloat()
-            left = paddingLeft.toFloat()
-            right = (w - paddingRight).toFloat()
-            bottom = (h - paddingBottom).toFloat()
-            center = PointF(
-                (right + left) / 2.0f,
-                (bottom + top) / 2.0f
-            )
-            circleRectF = RectF(
-                left + textRect.width() + 16.dpToPx(context) + smallDotRadius,
-                top + textRect.width() + 16.dpToPx(context) + smallDotRadius,
-                right - textRect.width() - 16.dpToPx(context) - smallDotRadius,
-                bottom - textRect.width() - 16.dpToPx(context) - smallDotRadius
-            )
-            timeTextWidth = textRect.width().toFloat()
-            timeTextHeight = textRect.height().toFloat()
-        }
+    val textRect = Rect()
+    paintCircleTime.getTextBounds("24", 0, 2, textRect);
+
+    timePickerDataHolder.apply {
+      radius = width / 2 - textRect.width() - 16.dpToPx(context)
+      top = paddingTop.toFloat()
+      left = paddingLeft.toFloat()
+      right = (w - paddingRight).toFloat()
+      bottom = (h - paddingBottom).toFloat()
+      center = PointF((right + left) / 2.0f, (bottom + top) / 2.0f)
+      circleRectF = RectF(
+        left + textRect.width() + 16.dpToPx(context) + smallDotRadius,
+        top + textRect.width() + 16.dpToPx(context) + smallDotRadius,
+        right - textRect.width() - 16.dpToPx(context) - smallDotRadius,
+        bottom - textRect.width() - 16.dpToPx(context) - smallDotRadius
+      )
+      timeTextWidth = textRect.width().toFloat()
+      timeTextHeight = textRect.height().toFloat()
+    }
+  }
+
+  /*-----------------------------------
+  -------------- Draw -----------------
+  -----------------------------------*/
+
+  override fun onDraw(canvas: Canvas) {
+    with(canvas) {
+      drawSecondaryCircle()
+      drawHourNumbers()
+      drawSelectors()
+      drawTimeText()
+    }
+  }
+
+  private fun Canvas.drawSecondaryCircle() {
+    val stepDegrees = getAngleCoefficient(minutesPerDot)
+    var angle = 0.0f
+    while (angle < DEGREES_IN_CIRLCE) { // While is using for Float step
+      val circlePoint = context.getDecartCoordinates(
+        timePickerDataHolder.timeTextWidth,
+        timePickerDataHolder.radius,
+        angle
+      )
+      drawCircle(circlePoint.x, circlePoint.y, smallDotRadius, paintCircleSecondary)
+      angle += stepDegrees
+    }
+  }
+
+  private fun Canvas.drawHourNumbers() {
+    with(timePickerDataHolder) {
+      drawText(
+        if (isAmPmTextFormat) "12am" else "24",
+        center.x - timeTextWidth / 2,
+        timeTextHeight + 4.dpToPx(context),
+        paintCircleTime
+      )
+      drawText(
+        if (isAmPmTextFormat) "06\nam" else "06",
+        right - timeTextWidth,
+        center.y + timeTextHeight / 2,
+        paintCircleTime
+      )
+      drawText(
+        if (isAmPmTextFormat) "12pm" else "12",
+        center.x - timeTextWidth / 2,
+        bottom - 4.dpToPx(context),
+        paintCircleTime
+      )
+      drawText(
+        if (isAmPmTextFormat) "06\npm" else "18",
+        left,
+        center.y + timeTextHeight / 2,
+        paintCircleTime
+      )
+    }
+  }
+
+  private fun Canvas.drawSelectors() {
+    timePickerDataHolder.internalTimeRanges.forEach { timeRange ->
+      val paintForThumbs =
+        if (timeRange.isUnderIntersection()) paintThumbTimeRangeIntersected else paintThumbTimeRange
+      val paintForArc =
+        if (timeRange.isUnderIntersection()) paintArcTimeRangeIntersected else paintArcTimeRange
+
+      // Start time thumb
+      drawThumb(
+        timeRange.startTimeRectF,
+        timeRange.isUnderIntersectionFromEnd,
+        paintForThumbs
+      )
+
+      // End time thumb
+      drawThumb(
+        timeRange.endTimeRectF,
+        timeRange.isUnderIntersectionFromStart,
+        paintForThumbs
+      )
+
+      drawArc(
+        timePickerDataHolder.circleRectF,
+        timeRange.startAngle - 90,
+        timeRange.getSweepAngle(),
+        false,
+        paintForArc
+      )
+    }
+  }
+
+  private fun Canvas.drawThumb(
+    rectF: RectF,
+    isUnderIntersection: Boolean,
+    paintForThumbs: Paint
+  ) {
+    if (!isUnderIntersection) {
+      drawCircle(
+        rectF.centerX(),
+        rectF.centerY(),
+        thumbRadius,
+        paintForThumbs
+      )
+    }
+  }
+
+  private fun Canvas.drawTimeText() {
+    timePickerDataHolder.getLastMovedTime()?.let { time ->
+      val timeText =
+        "${(time / 60).toString().normaliseTime()}:${(time % 60).toString().normaliseTime()}"
+
+      val centerTextRect = Rect()
+      getClipBounds(centerTextRect)
+      val cHeight: Int = centerTextRect.height()
+      val cWidth: Int = centerTextRect.width()
+
+      paintCenterTime.getTextBounds(timeText, 0, timeText.length, centerTextRect)
+
+      val centerTextX: Float = cWidth / 2f - centerTextRect.width() / 2f - centerTextRect.left
+      val centerTextY: Float = cHeight / 2f + centerTextRect.height() / 2f - centerTextRect.bottom
+
+      drawText(timeText, centerTextX, centerTextY, paintCenterTime)
+    }
+  }
+
+  /*-----------------------------------
+  -------- Touch processing -----------
+  -----------------------------------*/
+
+  override fun onTouchEvent(event: MotionEvent): Boolean {
+    var angle = getAngleFromDecart(timePickerDataHolder.center, event.x, event.y)
+    var minute = angle.angleToMinute(minutesPerDot)
+
+    if (minute % minutesPerDot != 0) {
+      minute -= minute % minutesPerDot
+      angle = minute.minuteToAngle(minutesPerDot)
     }
 
-    /*-----------------------------------
-    -------------- Draw -----------------
-    -----------------------------------*/
+    return when (event.action) {
+      ACTION_DOWN -> {
+        selectTimeCircleToMove(event)
+        createAndDrawNewTimeRange(minute)
+        return true
+      }
+      ACTION_UP -> {
+        mergeRangesAfterMoveIfNeeded()
+        centerTimeAnimator.start()
+        return true
+      }
+      ACTION_MOVE -> {
+        moveTimeRange(angle, minute)
+        timeRangesSelected.invoke(timePickerDataHolder.getTimeRanges())
+        timeRangesSelectedSubject.onNext(timePickerDataHolder.getTimeRanges())
+        return true
+      }
+      else -> {
+        false
+      }
+    }
+  }
 
-    override fun onDraw(canvas: Canvas) {
-        with(canvas) {
-            drawSecondaryCircle()
-            drawHourNumbers()
-            drawSelectors()
-            drawTimeText()
-        }
+  /* ----------------------------------------------
+  --------- Handle finger DOWN gestures -----------
+  ---------------------------------------------- */
+
+  private fun selectTimeCircleToMove(event: MotionEvent) {
+    var needToSort = false
+    timePickerDataHolder.internalTimeRanges.forEach {
+      it.isStartTimeMoving = false
+      it.isEndTimeMoving = false
+      if (it.startTimeRectF.containsClick(context, event.x, event.y)) {
+        it.isStartTimeMoving = true
+        needToSort = true
+        return@forEach
+      } else if (it.endTimeRectF.containsClick(context, event.x, event.y)) {
+        it.isEndTimeMoving = true
+        needToSort = true
+        return@forEach
+      }
     }
 
-    private fun Canvas.drawSecondaryCircle() {
-        val stepDegrees =
-            getAngleCoefficient(
-                minutesPerDot
-            )
-        var angle = 0.0f
-        while (angle < DEGREES_IN_CIRLCE) { // While is using for Float step
-            val circlePoint = context.getDecartCoordinates(
-                timePickerDataHolder.timeTextWidth,
-                timePickerDataHolder.radius,
-                angle
-            )
-            drawCircle(
-                circlePoint.x,
-                circlePoint.y,
-                smallDotRadius,
-                paintCircleSecondary
-            )
-            angle += stepDegrees
-        }
+    // In order to draw intersected time range below the one user actually move
+    if (needToSort) {
+      timePickerDataHolder.makeMovingTimeRangeDrawOnTop()
     }
+  }
 
-    private fun Canvas.drawHourNumbers() {
-        with(timePickerDataHolder) {
-            drawText(
-                if (isAmPmTextFormat) "12am" else "24",
-                center.x - timeTextWidth / 2,
-                timeTextHeight + 4.dpToPx(context),
-                paintCircleTime
-            )
-            drawText(
-                if (isAmPmTextFormat) "06\nam" else "06",
-                right - timeTextWidth,
-                center.y + timeTextHeight / 2,
-                paintCircleTime
-            )
-            drawText(
-                if (isAmPmTextFormat) "12pm" else "12",
-                center.x - timeTextWidth / 2,
-                bottom - 4.dpToPx(context),
-                paintCircleTime
-            )
-            drawText(
-                if (isAmPmTextFormat) "06\npm" else "18",
-                left,
-                center.y + timeTextHeight / 2,
-                paintCircleTime
-            )
-        }
-    }
-
-    private fun Canvas.drawSelectors() {
-        timePickerDataHolder.internalTimeRanges.forEach { timeRange ->
-            val paintForThumbs =
-                if (timeRange.isUnderIntersection()) paintThumbTimeRangeIntersected else paintThumbTimeRange
-            val paintForArc =
-                if (timeRange.isUnderIntersection()) paintArcTimeRangeIntersected else paintArcTimeRange
-
-            // Start time thumb
-            drawThumb(
-                timeRange.startTimeRectF,
-                timeRange.isUnderIntersectionFromEnd,
-                paintForThumbs
-            )
-
-            // End time thumb
-            drawThumb(
-                timeRange.endTimeRectF,
-                timeRange.isUnderIntersectionFromStart,
-                paintForThumbs
-            )
-
-            drawArc(
-                timePickerDataHolder.circleRectF,
-                timeRange.startAngle - 90,
-                timeRange.getSweepAngle(),
-                false,
-                paintForArc
-            )
-        }
-    }
-
-    private fun Canvas.drawThumb(
-        rectF: RectF,
-        isUnderIntersection: Boolean,
-        paintForThumbs: Paint
+  private fun createAndDrawNewTimeRange(minute: Int) {
+    val threshold = 6 * minutesPerDot
+    if ((timePickerDataHolder.internalTimeRanges.size < maxRangesCount) &&
+      timePickerDataHolder.canCreateTimeRange(minute, threshold)
     ) {
-        if (!isUnderIntersection) {
-            drawCircle(
-                rectF.centerX(),
-                rectF.centerY(),
-                thumbRadius,
-                paintForThumbs
-            )
-        }
+      timePickerDataHolder.internalTimeRanges.add(getNewTimeRange(minute))
+      invalidate()
+    }
+  }
+
+  private fun getNewTimeRange(minute: Int): InternalTimeRange {
+    val startMinute = minute - 3 * minutesPerDot
+    val endMinute = minute + 3 * minutesPerDot
+
+    val startAngle = startMinute.minuteToAngle(minutesPerDot)
+    val endAngle = endMinute.minuteToAngle(minutesPerDot)
+
+    return InternalTimeRange(
+      startMinute,
+      endMinute,
+      startAngle,
+      endAngle,
+      getThumbRectFByAngle(startAngle),
+      getThumbRectFByAngle(endAngle)
+    )
+  }
+
+  /* --------------------------------------------
+  --------- Handle finger UP gestures -----------
+  -------------------------------------------- */
+
+  private fun mergeRangesAfterMoveIfNeeded() {
+    timePickerDataHolder.apply {
+      removeCompletelyIntersectedRanges()
+      mergeStartTimeIntersectionRange()
+      mergeEndTimeIntersectionRange()
+      removeMovingTimeRangeIfNoTimeSelected()
+      resetTimeRangesMoveFlags()
     }
 
-    private fun Canvas.drawTimeText() {
-        timePickerDataHolder.getLastMovedTime()?.let { time ->
-            val timeText = "${(time / 60).toString().normaliseTime()}:${
-            (time % 60).toString().normaliseTime()
-            }"
+    invalidate()
+  }
 
-            val centerTextRect = Rect()
-            getClipBounds(centerTextRect)
-            val cHeight: Int = centerTextRect.height()
-            val cWidth: Int = centerTextRect.width()
-            paintCenterTime.getTextBounds(timeText, 0, timeText.length, centerTextRect)
-            val centerTextX: Float = cWidth / 2f - centerTextRect.width() / 2f - centerTextRect.left
-            val centerTextY: Float =
-                cHeight / 2f + centerTextRect.height() / 2f - centerTextRect.bottom
-            drawText(timeText, centerTextX, centerTextY, paintCenterTime)
-        }
-    }
+  /* ---------------------------------------
+  --------- Handle MOVE gestures -----------
+  --------------------------------------- */
 
-    /*-----------------------------------
-    -------- Touch processing -----------
-    -----------------------------------*/
+  private fun moveTimeRange(
+    angle: Float,
+    minute: Int
+  ) {
+    timePickerDataHolder.getMovingTimeRange()?.apply {
+      if (isStartTimeMoving) {
+        moveStartTime(angle, minute)
+      } else if (isEndTimeMoving) {
+        moveEndTime(angle, minute)
+      }
 
-    override fun onTouchEvent(event: MotionEvent): Boolean {
-        var angle = getAngleFromDecart(
-            timePickerDataHolder.center,
-            event.x,
-            event.y
-        )
-        var minute = angle.angleToMinute(minutesPerDot)
-
-        if (minute % minutesPerDot != 0) {
-            minute -= minute % minutesPerDot
-            angle = minute.minuteToAngle(minutesPerDot)
+      timePickerDataHolder.getCompletelyIntersectedRanges()
+        .forEach {
+          it.isUnderIntersectionFromStart = true
+          it.isUnderIntersectionFromEnd = true
         }
 
-        return when (event.action) {
-            ACTION_DOWN -> {
-                selectTimeCircleToMove(event)
-                createAndDrawNewTimeRange(minute)
-                return true
-            }
-            ACTION_UP -> {
-                mergeRangesAfterMoveIfNeeded()
-                centerTimeAnimator.start()
-                return true
-            }
-            ACTION_MOVE -> {
-                moveTimeRange(angle, minute)
-                timeRangesSelected.invoke(timePickerDataHolder.getTimeRanges())
-                timeRangesSelectedSubject.onNext(timePickerDataHolder.getTimeRanges())
-                return true
-            }
-            else -> {
-                false
-            }
-        }
+      invalidate()
     }
+  }
 
-    /* ----------------------------------------------
-    --------- Handle finger DOWN gestures -----------
-    ---------------------------------------------- */
+  private fun InternalTimeRange.moveStartTime(
+    angle: Float,
+    minute: Int
+  ) {
+    if (angle in 0f..endAngle) {
+      startAngle = angle
+      startTime = minute
+      startTimeRectF = getThumbRectFByAngle(angle)
+      lastMovedTime = minute
 
-    private fun selectTimeCircleToMove(event: MotionEvent) {
-        var needToSort = false
-        timePickerDataHolder.internalTimeRanges.forEach {
-            it.isStartTimeMoving = false
-            it.isEndTimeMoving = false
-            if (it.startTimeRectF.containsClick(context, event.x, event.y)) {
-                it.isStartTimeMoving = true
-                needToSort = true
-                return@forEach
-            } else if (it.endTimeRectF.containsClick(context, event.x, event.y)) {
-                it.isEndTimeMoving = true
-                needToSort = true
-                return@forEach
-            }
-        }
-
-        // In order to draw intersected time range below the one user actually move
-        if (needToSort) {
-            timePickerDataHolder.makeMovingTimeRangeDrawOnTop()
-        }
+      val intersectingRange = timePickerDataHolder.getIntersectingStartTimeRange()
+      if (intersectingRange != null) {
+        intersectingRange.isUnderIntersectionFromStart = true
+        intersectingRange.isUnderIntersectionFromEnd = false
+      } else {
+        timePickerDataHolder.resetIntersectionFlags()
+      }
     }
+  }
 
-    private fun createAndDrawNewTimeRange(minute: Int) {
-        val threshold = 6 * minutesPerDot
-        if ((timePickerDataHolder.internalTimeRanges.size < maxRangesCount) &&
-            timePickerDataHolder.canCreateTimeRange(minute, threshold)
-        ) {
-            timePickerDataHolder.internalTimeRanges.add(getNewTimeRange(minute))
-            invalidate()
-        }
+  private fun InternalTimeRange.moveEndTime(
+    angle: Float,
+    minute: Int
+  ) {
+    if (angle in startAngle..360f) {
+      endAngle = angle
+      endTime = minute
+      endTimeRectF = getThumbRectFByAngle(angle)
+      lastMovedTime = minute
+
+      val intersectingRange = timePickerDataHolder.getIntersectingEndTimeRange()
+      if (intersectingRange != null) {
+        intersectingRange.isUnderIntersectionFromStart = false
+        intersectingRange.isUnderIntersectionFromEnd = true
+      } else {
+        timePickerDataHolder.resetIntersectionFlags()
+      }
     }
+  }
 
-    private fun getNewTimeRange(minute: Int): InternalTimeRange {
-        val startMinute = minute - 3 * minutesPerDot
-        val endMinute = minute + 3 * minutesPerDot
+  private fun getThumbRectFByAngle(angle: Float): RectF {
+    val startRangeCenterPointF = context.getDecartCoordinates(
+      timePickerDataHolder.timeTextWidth,
+      timePickerDataHolder.radius,
+      angle - 90
+    )
 
-        val startAngle = startMinute.minuteToAngle(minutesPerDot)
-        val endAngle = endMinute.minuteToAngle(minutesPerDot)
+    return RectF(
+      startRangeCenterPointF.x - thumbRadius,
+      startRangeCenterPointF.y - thumbRadius,
+      startRangeCenterPointF.x + thumbRadius,
+      startRangeCenterPointF.y + thumbRadius
+    )
+  }
 
-        return InternalTimeRange(
-            startMinute,
-            endMinute,
-            startAngle,
-            endAngle,
-            getThumbRectFByAngle(startAngle),
-            getThumbRectFByAngle(endAngle)
-        )
-    }
+  /* ---------------------------------------
+  ------------ Click listeners -------------
+  --------------------------------------- */
 
-    /* --------------------------------------------
-    --------- Handle finger UP gestures -----------
-    -------------------------------------------- */
-
-    private fun mergeRangesAfterMoveIfNeeded() {
-        timePickerDataHolder.apply {
-            removeCompletelyIntersectedRanges()
-            mergeStartTimeIntersectionRange()
-            mergeEndTimeIntersectionRange()
-            removeMovingTimeRangeIfNoTimeSelected()
-            resetTimeRangesMoveFlags()
-        }
-
-        invalidate()
-    }
-
-    /* ---------------------------------------
-    --------- Handle MOVE gestures -----------
-    --------------------------------------- */
-
-    private fun moveTimeRange(angle: Float, minute: Int) {
-        timePickerDataHolder.getMovingTimeRange()?.apply {
-            if (isStartTimeMoving) {
-                moveStartTime(angle, minute)
-            } else if (isEndTimeMoving) {
-                moveEndTime(angle, minute)
-            }
-
-            timePickerDataHolder.getCompletelyIntersectedRanges()
-                .forEach {
-                    it.isUnderIntersectionFromStart = true
-                    it.isUnderIntersectionFromEnd = true
-                }
-
-            invalidate()
-        }
-    }
-
-    private fun InternalTimeRange.moveStartTime(angle: Float, minute: Int) {
-        if (angle in 0f..endAngle) {
-            startAngle = angle
-            startTime = minute
-            startTimeRectF = getThumbRectFByAngle(angle)
-            lastMovedTime = minute
-
-            val intersectingRange = timePickerDataHolder.getIntersectingStartTimeRange()
-            if (intersectingRange != null) {
-                intersectingRange.isUnderIntersectionFromStart = true
-                intersectingRange.isUnderIntersectionFromEnd = false
-            } else {
-                timePickerDataHolder.resetIntersectionFlags()
-            }
-        }
-    }
-
-    private fun InternalTimeRange.moveEndTime(angle: Float, minute: Int) {
-        if (angle in startAngle..360f) {
-            endAngle = angle
-            endTime = minute
-            endTimeRectF = getThumbRectFByAngle(angle)
-            lastMovedTime = minute
-
-            val intersectingRange = timePickerDataHolder.getIntersectingEndTimeRange()
-            if (intersectingRange != null) {
-                intersectingRange.isUnderIntersectionFromStart = false
-                intersectingRange.isUnderIntersectionFromEnd = true
-            } else {
-                timePickerDataHolder.resetIntersectionFlags()
-            }
-        }
-    }
-
-    private fun getThumbRectFByAngle(angle: Float): RectF {
-        val startRangeCenterPointF =
-            context.getDecartCoordinates(
-                timePickerDataHolder.timeTextWidth,
-                timePickerDataHolder.radius,
-                angle - 90
-            )
-
-        return RectF(
-            startRangeCenterPointF.x - thumbRadius,
-            startRangeCenterPointF.y - thumbRadius,
-            startRangeCenterPointF.x + thumbRadius,
-            startRangeCenterPointF.y + thumbRadius
-        )
-    }
-
-    /* ---------------------------------------
-    ------------ Click listeners -------------
-    --------------------------------------- */
-
-    fun timeRangesObservable() = timeRangesSelectedSubject
+  fun timeRangesObservable() = timeRangesSelectedSubject
 }
