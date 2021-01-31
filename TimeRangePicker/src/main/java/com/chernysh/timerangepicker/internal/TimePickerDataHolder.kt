@@ -1,8 +1,8 @@
-package com.chernysh.scheduletimepicker.internal
+package com.chernysh.timerangepicker.internal
 
 import android.graphics.PointF
 import android.graphics.RectF
-import com.chernysh.scheduletimepicker.external.TimeRange
+import com.chernysh.timerangepicker.TimeRange
 
 internal data class TimePickerDataHolder(
     var center: PointF = PointF(),
@@ -105,5 +105,10 @@ internal data class TimePickerDataHolder(
             timeRange.isCompletelyIntersectedBy(getMovingTimeRange())
         }
 
-    fun getTimeRanges() = internalTimeRanges.map { TimeRange(it.getStartDate(), it.getEndDate()) }
+    fun getTimeRanges() = internalTimeRanges.map {
+        TimeRange(
+            it.getStartDate(),
+            it.getEndDate()
+        )
+    }
 }

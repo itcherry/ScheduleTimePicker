@@ -1,4 +1,4 @@
-package com.chernysh.scheduletimepicker.internal
+package com.chernysh.timerangepicker.internal
 
 import android.content.Context
 import android.content.res.Resources

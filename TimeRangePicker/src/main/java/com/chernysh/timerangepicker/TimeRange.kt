@@ -1,4 +1,4 @@
-package com.chernysh.scheduletimepicker.external
+package com.chernysh.timerangepicker
 
 import java.util.*
 

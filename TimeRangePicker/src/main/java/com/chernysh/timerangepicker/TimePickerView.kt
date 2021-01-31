@@ -1,4 +1,4 @@
-package com.chernysh.scheduletimepicker.external
+package com.chernysh.timerangepicker
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -13,23 +13,20 @@ import android.view.animation.DecelerateInterpolator
 import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import com.chernysh.scheduletimepicker.R
-import com.chernysh.scheduletimepicker.internal.*
-import com.chernysh.scheduletimepicker.internal.DEGREES_IN_CIRLCE
-import com.chernysh.scheduletimepicker.internal.DOT_EACH_N_MINUTES_DEFAULT
-import com.chernysh.scheduletimepicker.internal.IS_AM_PM_TIME_FORMAT_DEFAULT
-import com.chernysh.scheduletimepicker.internal.InternalTimeRange
-import com.chernysh.scheduletimepicker.internal.MAX_RANGES_COUNT_DEFAULT
-import com.chernysh.scheduletimepicker.internal.PaintsInitialiser
-import com.chernysh.scheduletimepicker.internal.SELECTED_TIME_ANIMATION_DURATION
-import com.chernysh.scheduletimepicker.internal.SMALL_DOT_RADIUS
-import com.chernysh.scheduletimepicker.internal.THUMB_RADIUS
-import com.chernysh.scheduletimepicker.internal.TimePickerDataHolder
-import com.chernysh.scheduletimepicker.internal.getAngleCoefficient
-import com.chernysh.scheduletimepicker.internal.getAngleFromDecart
-import io.reactivex.Observable
+import com.chernysh.timerangepicker.internal.*
+import com.chernysh.timerangepicker.internal.DEGREES_IN_CIRLCE
+import com.chernysh.timerangepicker.internal.DOT_EACH_N_MINUTES_DEFAULT
+import com.chernysh.timerangepicker.internal.IS_AM_PM_TIME_FORMAT_DEFAULT
+import com.chernysh.timerangepicker.internal.InternalTimeRange
+import com.chernysh.timerangepicker.internal.MAX_RANGES_COUNT_DEFAULT
+import com.chernysh.timerangepicker.internal.PaintsInitialiser
+import com.chernysh.timerangepicker.internal.SELECTED_TIME_ANIMATION_DURATION
+import com.chernysh.timerangepicker.internal.SMALL_DOT_RADIUS
+import com.chernysh.timerangepicker.internal.THUMB_RADIUS
+import com.chernysh.timerangepicker.internal.TimePickerDataHolder
+import com.chernysh.timerangepicker.internal.getAngleCoefficient
+import com.chernysh.timerangepicker.internal.getAngleFromDecart
 import io.reactivex.subjects.PublishSubject
-import java.util.*
 import kotlin.math.min
 
 
@@ -111,64 +108,99 @@ class TimePickerView @JvmOverloads constructor(
     private val timeRangesSelectedSubject = PublishSubject.create<List<TimeRange>>()
 
     init {
-        val midnightColor = ContextCompat.getColor(context,
+        val midnightColor = ContextCompat.getColor(
+            context,
             R.color.midnight
         )
-        val brickColor = ContextCompat.getColor(context,
+        val brickColor = ContextCompat.getColor(
+            context,
             R.color.brick
         )
-        val berryColor = ContextCompat.getColor(context,
+        val berryColor = ContextCompat.getColor(
+            context,
             R.color.berry
         )
 
-        with(context.obtainStyledAttributes(attrs,
-            R.styleable.TimePickerView, defStyleAttr, 0)) {
+        with(
+            context.obtainStyledAttributes(
+                attrs,
+                R.styleable.TimePickerView, defStyleAttr, 0
+            )
+        ) {
             with(
                 PaintsInitialiser(
                     context
                 )
             ) {
-                val circleTimeTypeface = if(hasValue(circleTimeTextFontStyleable)){
+                val circleTimeTypeface = if (hasValue(circleTimeTextFontStyleable)) {
                     val circleTimeFontId = getResourceId(circleTimeTextFontStyleable, -1)
                     ResourcesCompat.getFont(context, circleTimeFontId)
                 } else null
 
-                val centerTimeTypeface = if(hasValue(centerTimeTextFontStyleable)){
+                val centerTimeTypeface = if (hasValue(centerTimeTextFontStyleable)) {
                     val circleTimeFontId = getResourceId(centerTimeTextFontStyleable, -1)
                     ResourcesCompat.getFont(context, circleTimeFontId)
                 } else null
 
                 paintArcTimeRange = getArcTimeRangePaint(
                     getColor(arcColorStyleable, berryColor),
-                    getDimensionPixelSize(arcThicknessStyleable, 8.dpToPx(context).toInt()).toFloat()
+                    getDimensionPixelSize(
+                        arcThicknessStyleable,
+                        8.dpToPx(context).toInt()
+                    ).toFloat()
                 )
                 paintArcTimeRangeIntersected = getArcTimeRangeIntersectedPaint(
                     getColor(rangeIntersectionColorStyleable, brickColor),
-                    getDimensionPixelSize(arcThicknessStyleable, 8.dpToPx(context).toInt()).toFloat()
+                    getDimensionPixelSize(
+                        arcThicknessStyleable,
+                        8.dpToPx(context).toInt()
+                    ).toFloat()
                 )
                 paintCircleTime = getCircleTimePaint(
                     getColor(circleTimeTextColorStyleable, midnightColor),
-                    getDimensionPixelSize(circleTimeTextSizeStyleable, 20.spToPx().toInt()).toFloat(),
+                    getDimensionPixelSize(
+                        circleTimeTextSizeStyleable,
+                        20.spToPx().toInt()
+                    ).toFloat(),
                     circleTimeTypeface ?: Typeface.DEFAULT
                 )
                 paintCenterTime = getCenterTimePaint(
                     getColor(centerTimeTextColorStyleable, midnightColor),
-                    getDimensionPixelSize(centerTimeTextSizeStyleable, 56.spToPx().toInt()).toFloat(),
+                    getDimensionPixelSize(
+                        centerTimeTextSizeStyleable,
+                        56.spToPx().toInt()
+                    ).toFloat(),
                     centerTimeTypeface ?: Typeface.DEFAULT
                 )
-                paintThumbTimeRange = getThumbTimeRangePaint(getColor(thumbColorStyleable, berryColor))
-                paintThumbTimeRangeIntersected = getThumbTimeRangeIntersectedPaint(getColor(rangeIntersectionColorStyleable, brickColor))
-                paintCircleSecondary = getCircleSecondaryPaint(getColor(dotColorStyleable, midnightColor))
+                paintThumbTimeRange =
+                    getThumbTimeRangePaint(getColor(thumbColorStyleable, berryColor))
+                paintThumbTimeRangeIntersected = getThumbTimeRangeIntersectedPaint(
+                    getColor(
+                        rangeIntersectionColorStyleable,
+                        brickColor
+                    )
+                )
+                paintCircleSecondary =
+                    getCircleSecondaryPaint(getColor(dotColorStyleable, midnightColor))
 
-                smallDotRadius = getDimensionPixelSize(dotRadiusStyleable, SMALL_DOT_RADIUS.dpToPx(context).toInt()).toFloat()
-                thumbRadius = getDimensionPixelSize(thumbRadiusStyleable, THUMB_RADIUS.dpToPx(context).toInt()).toFloat()
-                minutesPerDot = getInt(minutesPerDotStyleable,
+                smallDotRadius = getDimensionPixelSize(
+                    dotRadiusStyleable,
+                    SMALL_DOT_RADIUS.dpToPx(context).toInt()
+                ).toFloat()
+                thumbRadius = getDimensionPixelSize(
+                    thumbRadiusStyleable,
+                    THUMB_RADIUS.dpToPx(context).toInt()
+                ).toFloat()
+                minutesPerDot = getInt(
+                    minutesPerDotStyleable,
                     DOT_EACH_N_MINUTES_DEFAULT
                 )
-                maxRangesCount = getInt(maxRangesCountStyleable,
+                maxRangesCount = getInt(
+                    maxRangesCountStyleable,
                     MAX_RANGES_COUNT_DEFAULT
                 )
-                isAmPmTextFormat = getBoolean(isAmPmTimeFormatStyleable,
+                isAmPmTextFormat = getBoolean(
+                    isAmPmTimeFormatStyleable,
                     IS_AM_PM_TIME_FORMAT_DEFAULT
                 )
             }
@@ -300,19 +332,29 @@ class TimePickerView @JvmOverloads constructor(
     private fun Canvas.drawHourNumbers() {
         with(timePickerDataHolder) {
             drawText(
-                if(isAmPmTextFormat) "12am" else "24",
+                if (isAmPmTextFormat) "12am" else "24",
                 center.x - timeTextWidth / 2,
                 timeTextHeight + 4.dpToPx(context),
                 paintCircleTime
             )
-            drawText(if(isAmPmTextFormat) "06\nam" else "06", right - timeTextWidth, center.y + timeTextHeight / 2, paintCircleTime)
             drawText(
-                if(isAmPmTextFormat) "12pm" else "12",
+                if (isAmPmTextFormat) "06\nam" else "06",
+                right - timeTextWidth,
+                center.y + timeTextHeight / 2,
+                paintCircleTime
+            )
+            drawText(
+                if (isAmPmTextFormat) "12pm" else "12",
                 center.x - timeTextWidth / 2,
                 bottom - 4.dpToPx(context),
                 paintCircleTime
             )
-            drawText(if(isAmPmTextFormat) "06\npm" else "18", left, center.y + timeTextHeight / 2, paintCircleTime)
+            drawText(
+                if (isAmPmTextFormat) "06\npm" else "18",
+                left,
+                center.y + timeTextHeight / 2,
+                paintCircleTime
+            )
         }
     }
 

@@ -1,4 +1,4 @@
-package com.chernysh.scheduletimepicker.internal
+package com.chernysh.timerangepicker.internal
 
 internal const val HOURS_IN_DAY = 24
 internal const val MINUTES_IN_HOUR = 60

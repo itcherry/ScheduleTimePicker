@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Toolbars -->
     <declare-styleable name="TimePickerView">
         <attr name="tpv_thumb_radius" format="integer" />
         <attr name="tpv_thumb_color" format="color" />
@@ -20,5 +19,4 @@
         <attr name="tpv_dot_color" format="color" />
         <attr name="tpv_use_am_pm_time_format" format="boolean" />
     </declare-styleable>
-
 </resources>
