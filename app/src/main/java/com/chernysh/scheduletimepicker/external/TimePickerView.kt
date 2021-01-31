@@ -27,6 +27,9 @@ import com.chernysh.scheduletimepicker.internal.THUMB_RADIUS
 import com.chernysh.scheduletimepicker.internal.TimePickerDataHolder
 import com.chernysh.scheduletimepicker.internal.getAngleCoefficient
 import com.chernysh.scheduletimepicker.internal.getAngleFromDecart
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
+import java.util.*
 import kotlin.math.min
 
 
@@ -105,6 +108,7 @@ class TimePickerView @JvmOverloads constructor(
 
     // Listeners
     var timeRangesSelected: ((List<TimeRange>) -> Unit) = { }
+    private val timeRangesSelectedSubject = PublishSubject.create<List<TimeRange>>()
 
     init {
         val midnightColor = ContextCompat.getColor(context,
@@ -407,6 +411,7 @@ class TimePickerView @JvmOverloads constructor(
             ACTION_MOVE -> {
                 moveTimeRange(angle, minute)
                 timeRangesSelected.invoke(timePickerDataHolder.getTimeRanges())
+                timeRangesSelectedSubject.onNext(timePickerDataHolder.getTimeRanges())
                 return true
             }
             else -> {
@@ -560,4 +565,5 @@ class TimePickerView @JvmOverloads constructor(
     ------------ Click listeners -------------
     --------------------------------------- */
 
+    fun timeRangesObservable() = timeRangesSelectedSubject
 }
