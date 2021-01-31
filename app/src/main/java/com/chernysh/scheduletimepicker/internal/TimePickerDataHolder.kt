@@ -1,9 +1,10 @@
-package com.chernysh.scheduletimepicker
+package com.chernysh.scheduletimepicker.internal
 
 import android.graphics.PointF
 import android.graphics.RectF
+import com.chernysh.scheduletimepicker.external.TimeRange
 
-data class TimePickerDataHolder(
+internal data class TimePickerDataHolder(
     var center: PointF = PointF(),
     var left: Float = 0.0f,
     var right: Float = 0.0f,
@@ -13,37 +14,38 @@ data class TimePickerDataHolder(
     var radius: Float = 0.0f,
     var timeTextWidth: Float = 0.0f,
     var timeTextHeight: Float = 0.0f,
-    val timeRanges: MutableList<TimeRange> = mutableListOf()
+    val internalTimeRanges: MutableList<InternalTimeRange> = mutableListOf()
 ) {
 
     fun getMovingTimeRange() =
-        this.timeRanges.firstOrNull { it.isStartTimeMoving || it.isEndTimeMoving }
+        this.internalTimeRanges.firstOrNull { it.isStartTimeMoving || it.isEndTimeMoving }
 
-    fun resetLastMovedTime() = this.timeRanges.forEach { it.lastMovedTime = -1 }
+    fun resetLastMovedTime() = this.internalTimeRanges.forEach { it.lastMovedTime = -1 }
 
     fun resetTimeRangesMoveFlags() {
-        timeRanges.forEach {
+        internalTimeRanges.forEach {
             it.isStartTimeMoving = false
             it.isEndTimeMoving = false
         }
     }
 
-    fun resetIntersectionFlags() = this.timeRanges.forEach {
+    fun resetIntersectionFlags() = this.internalTimeRanges.forEach {
         it.isUnderIntersectionFromStart = false
         it.isUnderIntersectionFromEnd = false
     }
 
     fun makeMovingTimeRangeDrawOnTop() =
-        timeRanges.sortBy { it.isStartTimeMoving || it.isEndTimeMoving }
+        internalTimeRanges.sortBy { it.isStartTimeMoving || it.isEndTimeMoving }
 
     fun canCreateTimeRange(minute: Int, threshold: Int) =
-        timeRanges.all {
+        internalTimeRanges.all {
             !it.isStartTimeMoving &&
                     !it.isEndTimeMoving &&
                     ((minute + threshold) < it.startTime || (minute - threshold) > it.endTime)
         }
 
-    fun getLastMovedTime() = this.timeRanges.firstOrNull { it.lastMovedTime > -1 }?.lastMovedTime
+    fun getLastMovedTime() =
+        this.internalTimeRanges.firstOrNull { it.lastMovedTime > -1 }?.lastMovedTime
 
     fun mergeStartTimeIntersectionRange() {
         val intersectingStartTimeRange = getIntersectingStartTimeRange()
@@ -54,7 +56,7 @@ data class TimePickerDataHolder(
             movingTimeRange.startTime = intersectingStartTimeRange.startTime
             movingTimeRange.startTimeRectF =
                 intersectingStartTimeRange.startTimeRectF
-            timeRanges.remove(intersectingStartTimeRange)
+            internalTimeRanges.remove(intersectingStartTimeRange)
         }
     }
 
@@ -66,12 +68,12 @@ data class TimePickerDataHolder(
             movingTimeRange.endAngle = intersectingEndTimeRange.endAngle
             movingTimeRange.endTime = intersectingEndTimeRange.endTime
             movingTimeRange.endTimeRectF = intersectingEndTimeRange.endTimeRectF
-            timeRanges.remove(intersectingEndTimeRange)
+            internalTimeRanges.remove(intersectingEndTimeRange)
         }
     }
 
     fun getIntersectingStartTimeRange() = getMovingTimeRange()?.let { movingTimeRange ->
-        timeRanges.firstOrNull { timeRange ->
+        internalTimeRanges.firstOrNull { timeRange ->
             (timeRange != movingTimeRange) &&
                     (timeRange.startAngle <= movingTimeRange.startAngle) &&
                     (timeRange.endAngle >= movingTimeRange.startAngle) &&
@@ -80,7 +82,7 @@ data class TimePickerDataHolder(
     }
 
     fun getIntersectingEndTimeRange() = getMovingTimeRange()?.let { movingTimeRange ->
-        timeRanges.firstOrNull { timeRange ->
+        internalTimeRanges.firstOrNull { timeRange ->
             (timeRange != movingTimeRange) &&
                     (timeRange.endAngle >= movingTimeRange.endAngle) &&
                     (timeRange.startAngle <= movingTimeRange.endAngle) &&
@@ -91,16 +93,17 @@ data class TimePickerDataHolder(
     fun removeMovingTimeRangeIfNoTimeSelected() {
         val movingTimeRange = getMovingTimeRange()
         if ((movingTimeRange != null) && (movingTimeRange.startAngle == movingTimeRange.endAngle)) {
-            timeRanges.remove(movingTimeRange)
+            internalTimeRanges.remove(movingTimeRange)
         }
     }
 
     fun getCompletelyIntersectedRanges() =
-        timeRanges.filter { it.isCompletelyIntersectedBy(getMovingTimeRange()) }
+        internalTimeRanges.filter { it.isCompletelyIntersectedBy(getMovingTimeRange()) }
 
     fun removeCompletelyIntersectedRanges() =
-        timeRanges.removeAll { timeRange ->
+        internalTimeRanges.removeAll { timeRange ->
             timeRange.isCompletelyIntersectedBy(getMovingTimeRange())
         }
 
+    fun getTimeRanges() = internalTimeRanges.map { TimeRange(it.getStartDate(), it.getEndDate()) }
 }

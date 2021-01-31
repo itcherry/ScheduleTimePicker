@@ -1,6 +1,7 @@
-package com.chernysh.scheduletimepicker
+package com.chernysh.scheduletimepicker.internal
 
 import android.graphics.RectF
+import java.util.*
 
 /**
  * Entity for selection one of time ranges.
@@ -10,7 +11,7 @@ import android.graphics.RectF
  * @param startTime - time in minutes when range is starting
  * @param endTime - time in minutes when range finishing
  */
-data class TimeRange(
+internal data class InternalTimeRange(
     var startTime: Int,
     var endTime: Int,
     var startAngle: Float,
@@ -31,12 +32,22 @@ data class TimeRange(
         endAngle + 360 - startAngle
     }
 
-    fun isCompletelyIntersectedBy(movingTimeRange: TimeRange?) =
-        if (movingTimeRange != null) {
-            (this != movingTimeRange) &&
-                    (this.endAngle <= movingTimeRange.endAngle) &&
-                    (this.startAngle >= movingTimeRange.startAngle)
+    fun isCompletelyIntersectedBy(movingInternalTimeRange: InternalTimeRange?) =
+        if (movingInternalTimeRange != null) {
+            (this != movingInternalTimeRange) &&
+                    (this.endAngle <= movingInternalTimeRange.endAngle) &&
+                    (this.startAngle >= movingInternalTimeRange.startAngle)
         } else {
             false
         }
+
+    fun getStartDate() = getDateOnlyMinutes(startTime)
+
+    fun getEndDate() = getDateOnlyMinutes(endTime)
+
+    private fun getDateOnlyMinutes(minutes: Int) =
+        Calendar.getInstance().apply {
+            set(0, 0, 0, 0, 0, 0)
+            add(Calendar.MINUTE, minutes)
+        }.time
 }

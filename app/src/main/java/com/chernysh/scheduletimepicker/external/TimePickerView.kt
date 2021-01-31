@@ -1,7 +1,8 @@
-package com.chernysh.scheduletimepicker
+package com.chernysh.scheduletimepicker.external
 
 import android.animation.ValueAnimator
 import android.content.Context
+import android.content.res.TypedArray
 import android.graphics.*
 import android.util.AttributeSet
 import android.util.Log
@@ -10,6 +11,22 @@ import android.view.MotionEvent.*
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import androidx.core.animation.doOnEnd
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
+import com.chernysh.scheduletimepicker.R
+import com.chernysh.scheduletimepicker.internal.*
+import com.chernysh.scheduletimepicker.internal.DEGREES_IN_CIRLCE
+import com.chernysh.scheduletimepicker.internal.DOT_EACH_N_MINUTES_DEFAULT
+import com.chernysh.scheduletimepicker.internal.IS_AM_PM_TIME_FORMAT_DEFAULT
+import com.chernysh.scheduletimepicker.internal.InternalTimeRange
+import com.chernysh.scheduletimepicker.internal.MAX_RANGES_COUNT_DEFAULT
+import com.chernysh.scheduletimepicker.internal.PaintsInitialiser
+import com.chernysh.scheduletimepicker.internal.SELECTED_TIME_ANIMATION_DURATION
+import com.chernysh.scheduletimepicker.internal.SMALL_DOT_RADIUS
+import com.chernysh.scheduletimepicker.internal.THUMB_RADIUS
+import com.chernysh.scheduletimepicker.internal.TimePickerDataHolder
+import com.chernysh.scheduletimepicker.internal.getAngleCoefficient
+import com.chernysh.scheduletimepicker.internal.getAngleFromDecart
 import kotlin.math.min
 
 
@@ -20,11 +37,18 @@ class TimePickerView @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
 
     // Math fields
-    private val timePickerDataHolder: TimePickerDataHolder = TimePickerDataHolder()
+    private val timePickerDataHolder: TimePickerDataHolder =
+        TimePickerDataHolder()
 
     // Sizes
-    private val smallDotRadius = SMALL_DOT_RADIUS.dpToPx(context)
-    private val thumbRadius = THUMB_RADIUS.dpToPx(context)
+    private var smallDotRadius: Float = SMALL_DOT_RADIUS.dpToPx(context)
+    private var thumbRadius = THUMB_RADIUS.dpToPx(context)
+    private var minutesPerDot =
+        DOT_EACH_N_MINUTES_DEFAULT
+    private var maxRangesCount =
+        MAX_RANGES_COUNT_DEFAULT
+    private var isAmPmTextFormat =
+        IS_AM_PM_TIME_FORMAT_DEFAULT
 
     // Paints
     private val paintArcTimeRange: Paint
@@ -35,22 +59,129 @@ class TimePickerView @JvmOverloads constructor(
     private val paintCircleTime: Paint
     private val paintCenterTime: Paint
 
+    // Animators
     private val centerTimeAnimator: ValueAnimator
 
-    init {
-        with(PaintsInitialiser(context)) {
-            paintArcTimeRange = getArcTimeRangePaint()
-            paintArcTimeRangeIntersected = getArcTimeRangeIntersectedPaint()
-            paintThumbTimeRange = getThumbTimeRangePaint()
-            paintThumbTimeRangeIntersected = getThumbTimeRangeIntersectedPaint()
-            paintCircleSecondary = getCircleSecondaryPaint()
-            paintCircleTime = getCircleTimePaint()
-            paintCenterTime = getCenterTimePaint()
-        }
+    // Dynamic styles
+    private val arcColorStyleable =
+        R.styleable.TimePickerView_tpv_range_arc_color
+    private val arcThicknessStyleable =
+        R.styleable.TimePickerView_tpv_range_arc_thickness
 
-        centerTimeAnimator = ValueAnimator.ofInt(255, 0)
+    private val centerTimeTextSizeStyleable =
+        R.styleable.TimePickerView_tpv_center_time_text_size
+    private val centerTimeTextColorStyleable =
+        R.styleable.TimePickerView_tpv_center_time_text_color
+    private val centerTimeTextFontStyleable =
+        R.styleable.TimePickerView_tpv_center_time_text_font
+    private val centerTimeAnimationDurationStyleable =
+        R.styleable.TimePickerView_tpv_center_time_animation_duration_millis
+
+    private val circleTimeTextSizeStyleable =
+        R.styleable.TimePickerView_tpv_circle_time_text_size
+    private val circleTimeTextColorStyleable =
+        R.styleable.TimePickerView_tpv_circle_time_text_color
+    private val circleTimeTextFontStyleable =
+        R.styleable.TimePickerView_tpv_circle_time_text_font
+
+    private val dotColorStyleable =
+        R.styleable.TimePickerView_tpv_dot_color
+    private val minutesPerDotStyleable =
+        R.styleable.TimePickerView_tpv_minutes_per_dot
+    private val dotRadiusStyleable =
+        R.styleable.TimePickerView_tpv_dot_radius
+
+    private val thumbRadiusStyleable =
+        R.styleable.TimePickerView_tpv_thumb_radius
+    private val thumbColorStyleable =
+        R.styleable.TimePickerView_tpv_thumb_color
+
+    private val maxRangesCountStyleable =
+        R.styleable.TimePickerView_tpv_max_ranges_count
+    private val isAmPmTimeFormatStyleable =
+        R.styleable.TimePickerView_tpv_use_am_pm_time_format
+    private val rangeIntersectionColorStyleable =
+        R.styleable.TimePickerView_tpv_range_intersection_color
+
+    // Listeners
+    var timeRangesSelected: ((List<TimeRange>) -> Unit) = { }
+
+    init {
+        val midnightColor = ContextCompat.getColor(context,
+            R.color.midnight
+        )
+        val brickColor = ContextCompat.getColor(context,
+            R.color.brick
+        )
+        val berryColor = ContextCompat.getColor(context,
+            R.color.berry
+        )
+
+        with(context.obtainStyledAttributes(attrs,
+            R.styleable.TimePickerView, defStyleAttr, 0)) {
+            with(
+                PaintsInitialiser(
+                    context
+                )
+            ) {
+                val circleTimeTypeface = if(hasValue(circleTimeTextFontStyleable)){
+                    val circleTimeFontId = getResourceId(circleTimeTextFontStyleable, -1)
+                    ResourcesCompat.getFont(context, circleTimeFontId)
+                } else null
+
+                val centerTimeTypeface = if(hasValue(centerTimeTextFontStyleable)){
+                    val circleTimeFontId = getResourceId(centerTimeTextFontStyleable, -1)
+                    ResourcesCompat.getFont(context, circleTimeFontId)
+                } else null
+
+                paintArcTimeRange = getArcTimeRangePaint(
+                    getColor(arcColorStyleable, berryColor),
+                    getDimensionPixelSize(arcThicknessStyleable, 8.dpToPx(context).toInt()).toFloat()
+                )
+                paintArcTimeRangeIntersected = getArcTimeRangeIntersectedPaint(
+                    getColor(rangeIntersectionColorStyleable, brickColor),
+                    getDimensionPixelSize(arcThicknessStyleable, 8.dpToPx(context).toInt()).toFloat()
+                )
+                paintCircleTime = getCircleTimePaint(
+                    getColor(circleTimeTextColorStyleable, midnightColor),
+                    getDimensionPixelSize(circleTimeTextSizeStyleable, 20.spToPx().toInt()).toFloat(),
+                    circleTimeTypeface ?: Typeface.DEFAULT
+                )
+                paintCenterTime = getCenterTimePaint(
+                    getColor(centerTimeTextColorStyleable, midnightColor),
+                    getDimensionPixelSize(centerTimeTextSizeStyleable, 56.spToPx().toInt()).toFloat(),
+                    centerTimeTypeface ?: Typeface.DEFAULT
+                )
+                paintThumbTimeRange = getThumbTimeRangePaint(getColor(thumbColorStyleable, berryColor))
+                paintThumbTimeRangeIntersected = getThumbTimeRangeIntersectedPaint(getColor(rangeIntersectionColorStyleable, brickColor))
+                paintCircleSecondary = getCircleSecondaryPaint(getColor(dotColorStyleable, midnightColor))
+
+                smallDotRadius = getDimensionPixelSize(dotRadiusStyleable, SMALL_DOT_RADIUS.dpToPx(context).toInt()).toFloat()
+                thumbRadius = getDimensionPixelSize(thumbRadiusStyleable, THUMB_RADIUS.dpToPx(context).toInt()).toFloat()
+                minutesPerDot = getInt(minutesPerDotStyleable,
+                    DOT_EACH_N_MINUTES_DEFAULT
+                )
+                maxRangesCount = getInt(maxRangesCountStyleable,
+                    MAX_RANGES_COUNT_DEFAULT
+                )
+                isAmPmTextFormat = getBoolean(isAmPmTimeFormatStyleable,
+                    IS_AM_PM_TIME_FORMAT_DEFAULT
+                )
+            }
+
+            centerTimeAnimator = getCenterTimeAnimator()
+
+            recycle()
+        }
+    }
+
+    private fun TypedArray.getCenterTimeAnimator() =
+        ValueAnimator.ofInt(255, 0)
             .apply {
-                duration = SELECTED_TIME_ANIMATION_DURATION
+                duration = getInt(
+                    centerTimeAnimationDurationStyleable,
+                    SELECTED_TIME_ANIMATION_DURATION
+                ).toLong()
                 interpolator = DecelerateInterpolator()
                 addUpdateListener {
                     paintCenterTime.alpha = it.animatedValue as Int
@@ -61,7 +192,6 @@ class TimePickerView @JvmOverloads constructor(
                     timePickerDataHolder.resetLastMovedTime()
                 }
             }
-    }
 
     /*-----------------------------------
      ------------ Measuring -------------
@@ -108,7 +238,7 @@ class TimePickerView @JvmOverloads constructor(
         paintCircleTime.getTextBounds("24", 0, 2, textRect);
 
         timePickerDataHolder.apply {
-            radius = width / 2 - textRect.width() - 8.dpToPx(context)
+            radius = width / 2 - textRect.width() - 16.dpToPx(context)
             top = paddingTop.toFloat()
             left = paddingLeft.toFloat()
             right = (w - paddingRight).toFloat()
@@ -118,10 +248,10 @@ class TimePickerView @JvmOverloads constructor(
                 (bottom + top) / 2.0f
             )
             circleRectF = RectF(
-                left + textRect.width() + 8.dpToPx(context) + smallDotRadius,
-                top + textRect.width() + 4.dpToPx(context) + smallDotRadius,
-                right - textRect.width() - 8.dpToPx(context) - smallDotRadius,
-                bottom - textRect.width() - 4.dpToPx(context) - smallDotRadius
+                left + textRect.width() + 16.dpToPx(context) + smallDotRadius,
+                top + textRect.width() + 16.dpToPx(context) + smallDotRadius,
+                right - textRect.width() - 16.dpToPx(context) - smallDotRadius,
+                bottom - textRect.width() - 16.dpToPx(context) - smallDotRadius
             )
             timeTextWidth = textRect.width().toFloat()
             timeTextHeight = textRect.height().toFloat()
@@ -142,7 +272,10 @@ class TimePickerView @JvmOverloads constructor(
     }
 
     private fun Canvas.drawSecondaryCircle() {
-        val stepDegrees = getAngleCoefficient()
+        val stepDegrees =
+            getAngleCoefficient(
+                minutesPerDot
+            )
         var angle = 0.0f
         while (angle < DEGREES_IN_CIRLCE) { // While is using for Float step
             val circlePoint = context.getDecartCoordinates(
@@ -163,24 +296,24 @@ class TimePickerView @JvmOverloads constructor(
     private fun Canvas.drawHourNumbers() {
         with(timePickerDataHolder) {
             drawText(
-                "24",
+                if(isAmPmTextFormat) "12am" else "24",
                 center.x - timeTextWidth / 2,
                 timeTextHeight + 4.dpToPx(context),
                 paintCircleTime
             )
-            drawText("06", right - timeTextWidth, center.y + timeTextHeight / 2, paintCircleTime)
+            drawText(if(isAmPmTextFormat) "06\nam" else "06", right - timeTextWidth, center.y + timeTextHeight / 2, paintCircleTime)
             drawText(
-                "12",
+                if(isAmPmTextFormat) "12pm" else "12",
                 center.x - timeTextWidth / 2,
                 bottom - 4.dpToPx(context),
                 paintCircleTime
             )
-            drawText("18", left, center.y + timeTextHeight / 2, paintCircleTime)
+            drawText(if(isAmPmTextFormat) "06\npm" else "18", left, center.y + timeTextHeight / 2, paintCircleTime)
         }
     }
 
     private fun Canvas.drawSelectors() {
-        timePickerDataHolder.timeRanges.forEach { timeRange ->
+        timePickerDataHolder.internalTimeRanges.forEach { timeRange ->
             val paintForThumbs =
                 if (timeRange.isUnderIntersection()) paintThumbTimeRangeIntersected else paintThumbTimeRange
             val paintForArc =
@@ -228,7 +361,7 @@ class TimePickerView @JvmOverloads constructor(
     private fun Canvas.drawTimeText() {
         timePickerDataHolder.getLastMovedTime()?.let { time ->
             val timeText = "${(time / 60).toString().normaliseTime()}:${
-                (time % 60).toString().normaliseTime()
+            (time % 60).toString().normaliseTime()
             }"
 
             val centerTextRect = Rect()
@@ -248,12 +381,16 @@ class TimePickerView @JvmOverloads constructor(
     -----------------------------------*/
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        var angle = getAngleFromDecart(timePickerDataHolder.center, event.x, event.y)
-        var minute = angle.angleToMinute()
+        var angle = getAngleFromDecart(
+            timePickerDataHolder.center,
+            event.x,
+            event.y
+        )
+        var minute = angle.angleToMinute(minutesPerDot)
 
-        if (minute % DOT_EACH_N_MINUTES != 0) {
-            minute -= minute % DOT_EACH_N_MINUTES
-            angle = minute.minuteToAngle()
+        if (minute % minutesPerDot != 0) {
+            minute -= minute % minutesPerDot
+            angle = minute.minuteToAngle(minutesPerDot)
         }
 
         return when (event.action) {
@@ -269,6 +406,7 @@ class TimePickerView @JvmOverloads constructor(
             }
             ACTION_MOVE -> {
                 moveTimeRange(angle, minute)
+                timeRangesSelected.invoke(timePickerDataHolder.getTimeRanges())
                 return true
             }
             else -> {
@@ -283,14 +421,14 @@ class TimePickerView @JvmOverloads constructor(
 
     private fun selectTimeCircleToMove(event: MotionEvent) {
         var needToSort = false
-        timePickerDataHolder.timeRanges.forEach {
+        timePickerDataHolder.internalTimeRanges.forEach {
             it.isStartTimeMoving = false
             it.isEndTimeMoving = false
-            if (it.startTimeRectF.contains(event.x, event.y)) {
+            if (it.startTimeRectF.containsClick(context, event.x, event.y)) {
                 it.isStartTimeMoving = true
                 needToSort = true
                 return@forEach
-            } else if (it.endTimeRectF.contains(event.x, event.y)) {
+            } else if (it.endTimeRectF.containsClick(context, event.x, event.y)) {
                 it.isEndTimeMoving = true
                 needToSort = true
                 return@forEach
@@ -304,23 +442,23 @@ class TimePickerView @JvmOverloads constructor(
     }
 
     private fun createAndDrawNewTimeRange(minute: Int) {
-        val threshold = 6 * DOT_EACH_N_MINUTES
-        if ((timePickerDataHolder.timeRanges.size < MAX_RANGES_COUNT) &&
+        val threshold = 6 * minutesPerDot
+        if ((timePickerDataHolder.internalTimeRanges.size < maxRangesCount) &&
             timePickerDataHolder.canCreateTimeRange(minute, threshold)
         ) {
-            timePickerDataHolder.timeRanges.add(getNewTimeRange(minute))
+            timePickerDataHolder.internalTimeRanges.add(getNewTimeRange(minute))
             invalidate()
         }
     }
 
-    private fun getNewTimeRange(minute: Int): TimeRange {
-        val startMinute = minute - 3 * DOT_EACH_N_MINUTES
-        val endMinute = minute + 3 * DOT_EACH_N_MINUTES
+    private fun getNewTimeRange(minute: Int): InternalTimeRange {
+        val startMinute = minute - 3 * minutesPerDot
+        val endMinute = minute + 3 * minutesPerDot
 
-        val startAngle = startMinute.minuteToAngle()
-        val endAngle = endMinute.minuteToAngle()
+        val startAngle = startMinute.minuteToAngle(minutesPerDot)
+        val endAngle = endMinute.minuteToAngle(minutesPerDot)
 
-        return TimeRange(
+        return InternalTimeRange(
             startMinute,
             endMinute,
             startAngle,
@@ -368,7 +506,7 @@ class TimePickerView @JvmOverloads constructor(
         }
     }
 
-    private fun TimeRange.moveStartTime(angle: Float, minute: Int) {
+    private fun InternalTimeRange.moveStartTime(angle: Float, minute: Int) {
         if (angle in 0f..endAngle) {
             startAngle = angle
             startTime = minute
@@ -385,7 +523,7 @@ class TimePickerView @JvmOverloads constructor(
         }
     }
 
-    private fun TimeRange.moveEndTime(angle: Float, minute: Int) {
+    private fun InternalTimeRange.moveEndTime(angle: Float, minute: Int) {
         if (angle in startAngle..360f) {
             endAngle = angle
             endTime = minute
@@ -417,4 +555,9 @@ class TimePickerView @JvmOverloads constructor(
             startRangeCenterPointF.y + thumbRadius
         )
     }
+
+    /* ---------------------------------------
+    ------------ Click listeners -------------
+    --------------------------------------- */
+
 }

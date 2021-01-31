@@ -7,10 +7,12 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <com.chernysh.scheduletimepicker.TimePickerView
+    <com.chernysh.scheduletimepicker.external.TimePickerView
         android:id="@+id/scheduleTimePicker"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
