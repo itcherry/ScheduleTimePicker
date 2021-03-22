@@ -1,6 +1,4 @@
 # TimeRangePicker
-
-# MultiSearchView
 Custom view for selection multiple time ranges. Feel free to adjust it for your needs with ease!
 
 <img src="https://user-images.githubusercontent.com/16778669/112060607-1464af80-8b66-11eb-8e1d-1809ceb25975.gif" height="500" align="center"/>
