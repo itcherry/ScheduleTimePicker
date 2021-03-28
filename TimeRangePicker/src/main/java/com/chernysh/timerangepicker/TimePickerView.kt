@@ -26,6 +26,8 @@ import com.chernysh.timerangepicker.internal.THUMB_RADIUS
 import com.chernysh.timerangepicker.internal.TimePickerDataHolder
 import com.chernysh.timerangepicker.internal.getAngleCoefficient
 import com.chernysh.timerangepicker.internal.getAngleFromDecart
+import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.subjects.PublishSubject
 import kotlin.math.min
 
@@ -541,5 +543,5 @@ class TimePickerView @JvmOverloads constructor(context: Context, attrs: Attribut
   ------------ Click listeners -------------
   --------------------------------------- */
 
-  fun timeRangesObservable() = timeRangesSelectedSubject
+  fun timeRangesObservable(): Observable<List<TimeRange>> = timeRangesSelectedSubject
 }
