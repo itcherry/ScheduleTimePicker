@@ -10,9 +10,10 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.MotionEvent.*
 import android.view.View
-import android.view.ViewTreeObserver
 import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.view.animation.DecelerateInterpolator
+import androidx.annotation.ColorRes
+import androidx.annotation.FontRes
 import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -26,18 +27,17 @@ class TimePickerView @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0
-)
-  : View(context, attrs, defStyleAttr) {
+) : View(context, attrs, defStyleAttr) {
 
   // Math fields
   private val timePickerDataHolder: TimePickerDataHolder = TimePickerDataHolder()
 
   // Sizes
-  private var smallDotRadius: Float = SMALL_DOT_RADIUS.dpToPx(context)
-  private var thumbRadius = THUMB_RADIUS.dpToPx(context)
-  private var minutesPerDot = DOT_EACH_N_MINUTES_DEFAULT
-  private var maxRangesCount = MAX_RANGES_COUNT_DEFAULT
-  private var isAmPmTextFormat = IS_AM_PM_TIME_FORMAT_DEFAULT
+  var smallDotRadius: Float = SMALL_DOT_RADIUS.dpToPx(context)
+  var thumbRadius = THUMB_RADIUS.dpToPx(context)
+  var minutesPerDot = DOT_EACH_N_MINUTES_DEFAULT
+  var maxRangesCount = MAX_RANGES_COUNT_DEFAULT
+  var isAmPmTextFormat = IS_AM_PM_TIME_FORMAT_DEFAULT
 
   // Paints
   private val paintArcTimeRange: Paint
@@ -137,6 +137,50 @@ class TimePickerView @JvmOverloads constructor(
 
       recycle()
     }
+  }
+
+  fun setArcColor(@ColorRes color: Int) {
+    paintArcTimeRange.color = ContextCompat.getColor(context, color)
+  }
+
+  fun setArcThickness(thickness: Float) {
+    paintArcTimeRange.strokeWidth = thickness
+  }
+
+  fun setArcIntersectionColor(@ColorRes color: Int) {
+    paintArcTimeRangeIntersected.color = ContextCompat.getColor(context, color)
+  }
+
+  fun setArcIntersectionThickness(thickness: Float) {
+    paintArcTimeRangeIntersected.strokeWidth = thickness
+  }
+
+  fun setCenterTextColor(@ColorRes color: Int) {
+    paintCenterTime.color = ContextCompat.getColor(context, color)
+  }
+
+  fun setCenterTextSize(size: Float) {
+    paintCenterTime.textSize = size
+  }
+
+  fun setCircleTextColor(@ColorRes color: Int) {
+    paintCircleTime.color = ContextCompat.getColor(context, color)
+  }
+
+  fun setCircleTextSize(size: Float) {
+    paintCircleTime.textSize = size
+  }
+
+  fun setThumbIntersectedColor(@ColorRes color: Int) {
+    paintThumbTimeRangeIntersected.color = ContextCompat.getColor(context, color)
+  }
+
+  fun setThumbColor(@ColorRes color: Int) {
+    paintThumbTimeRange.color = ContextCompat.getColor(context, color)
+  }
+
+  fun setDotsColor(@ColorRes color: Int) {
+    paintCircleSecondary.color = ContextCompat.getColor(context, color)
   }
 
   private fun TypedArray.getCenterTimeAnimator() =
