@@ -1,5 +1,6 @@
 package com.chernysh.timerangepicker.internal
 
+import android.content.Context
 import android.graphics.RectF
 import java.util.*
 
@@ -24,6 +25,7 @@ internal data class InternalTimeRange(
   var isUnderIntersectionFromStart: Boolean = false,
   var isUnderIntersectionFromEnd: Boolean = false
 ) {
+
   fun isUnderIntersection() = isUnderIntersectionFromStart || isUnderIntersectionFromEnd
 
   fun getSweepAngle() = if (endAngle >= startAngle) {
@@ -41,13 +43,24 @@ internal data class InternalTimeRange(
       false
     }
 
-  fun getStartDate() = getDateOnlyMinutes(startTime)
+  companion object {
+    fun createFrom(startMinute: Int,
+                   endMinute: Int,
+                   minutesPerDot: Int,
+                   context: Context,
+                   timePickerDataHolder: TimePickerDataHolder,
+                   thumbRadius: Float): InternalTimeRange {
+      val startAngle = startMinute.minuteToAngle(minutesPerDot)
+      val endAngle = endMinute.minuteToAngle(minutesPerDot)
 
-  fun getEndDate() = getDateOnlyMinutes(endTime)
-
-  private fun getDateOnlyMinutes(minutes: Int) =
-    Calendar.getInstance().apply {
-      set(0, 0, 0, 0, 0, 0)
-      add(Calendar.MINUTE, minutes)
-    }.time
+      return InternalTimeRange(
+        startMinute,
+        endMinute,
+        startAngle,
+        endAngle,
+        context.getThumbRectFByAngle(startAngle, timePickerDataHolder, thumbRadius),
+        context.getThumbRectFByAngle(endAngle, timePickerDataHolder, thumbRadius)
+      )
+    }
+  }
 }

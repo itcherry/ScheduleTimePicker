@@ -1,8 +1,10 @@
 package com.chernysh.timerangepicker.internal
 
+import android.content.Context
 import android.graphics.PointF
 import android.graphics.RectF
 import com.chernysh.timerangepicker.TimeRange
+import java.util.*
 
 internal data class TimePickerDataHolder(
   var center: PointF = PointF(),
@@ -110,8 +112,40 @@ internal data class TimePickerDataHolder(
 
   fun getTimeRanges() = internalTimeRanges.map {
     TimeRange(
-      it.getStartDate(),
-      it.getEndDate()
+      it.startTime,
+      it.endTime
     )
+  }
+
+  fun addInternalTimeRangeWith(minute: Int, minutesPerDot: Int, context: Context, thumbRadius: Float) {
+    val startMinute = minute - 3 * minutesPerDot
+    val endMinute = minute + 3 * minutesPerDot
+
+    internalTimeRanges.add(
+      InternalTimeRange.createFrom(
+        startMinute,
+        endMinute,
+        minutesPerDot,
+        context,
+        this@TimePickerDataHolder,
+        thumbRadius
+      )
+    )
+  }
+
+  fun setTimeRanges(timeRanges: List<TimeRange>, minutesPerDot: Int, context: Context, thumbRadius: Float) {
+    internalTimeRanges.apply {
+      clear()
+      addAll(timeRanges.map {
+        InternalTimeRange.createFrom(
+          it.startTime,
+          it.endTime,
+          minutesPerDot,
+          context,
+          this@TimePickerDataHolder,
+          thumbRadius
+        )
+      })
+    }
   }
 }

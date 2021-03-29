@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.PointF
 import android.graphics.RectF
+import java.util.*
 import kotlin.math.atan
 import kotlin.math.cos
 import kotlin.math.sin
@@ -74,3 +75,23 @@ internal fun RectF.containsClick(
   )
   return biggerRectForBigFatFinger.contains(x, y)
 }
+
+internal fun Context.getThumbRectFByAngle(
+  angle: Float,
+  timePickerDataHolder: TimePickerDataHolder,
+  thumbRadius: Float): RectF {
+  val startRangeCenterPointF = getDecartCoordinates(
+    timePickerDataHolder.timeTextWidth,
+    timePickerDataHolder.radius,
+    angle - 90
+  )
+
+  return RectF(
+    startRangeCenterPointF.x - thumbRadius,
+    startRangeCenterPointF.y - thumbRadius,
+    startRangeCenterPointF.x + thumbRadius,
+    startRangeCenterPointF.y + thumbRadius
+  )
+}
+
+fun Date.toMinutes() = (this.time / 60000L).toInt()

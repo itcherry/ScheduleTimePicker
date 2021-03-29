@@ -4,34 +4,29 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.*
+import android.os.Build
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.MotionEvent.*
 import android.view.View
+import android.view.ViewTreeObserver
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.view.animation.DecelerateInterpolator
 import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.chernysh.timerangepicker.internal.*
-import com.chernysh.timerangepicker.internal.DEGREES_IN_CIRLCE
-import com.chernysh.timerangepicker.internal.DOT_EACH_N_MINUTES_DEFAULT
-import com.chernysh.timerangepicker.internal.IS_AM_PM_TIME_FORMAT_DEFAULT
-import com.chernysh.timerangepicker.internal.InternalTimeRange
-import com.chernysh.timerangepicker.internal.MAX_RANGES_COUNT_DEFAULT
-import com.chernysh.timerangepicker.internal.PaintsInitialiser
-import com.chernysh.timerangepicker.internal.SELECTED_TIME_ANIMATION_DURATION
-import com.chernysh.timerangepicker.internal.SMALL_DOT_RADIUS
-import com.chernysh.timerangepicker.internal.THUMB_RADIUS
-import com.chernysh.timerangepicker.internal.TimePickerDataHolder
-import com.chernysh.timerangepicker.internal.getAngleCoefficient
-import com.chernysh.timerangepicker.internal.getAngleFromDecart
 import io.reactivex.Observable
-import io.reactivex.Single
 import io.reactivex.subjects.PublishSubject
 import kotlin.math.min
 
-class TimePickerView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
+
+class TimePickerView @JvmOverloads constructor(
+  context: Context,
+  attrs: AttributeSet? = null,
+  defStyleAttr: Int = 0
+)
   : View(context, attrs, defStyleAttr) {
 
   // Math fields
@@ -376,12 +371,12 @@ class TimePickerView @JvmOverloads constructor(context: Context, attrs: Attribut
       ACTION_UP -> {
         mergeRangesAfterMoveIfNeeded()
         centerTimeAnimator.start()
+        timeRangesSelected.invoke(timePickerDataHolder.getTimeRanges())
+        timeRangesSelectedSubject.onNext(timePickerDataHolder.getTimeRanges())
         return true
       }
       ACTION_MOVE -> {
         moveTimeRange(angle, minute)
-        timeRangesSelected.invoke(timePickerDataHolder.getTimeRanges())
-        timeRangesSelectedSubject.onNext(timePickerDataHolder.getTimeRanges())
         return true
       }
       else -> {
@@ -421,26 +416,9 @@ class TimePickerView @JvmOverloads constructor(context: Context, attrs: Attribut
     if ((timePickerDataHolder.internalTimeRanges.size < maxRangesCount) &&
       timePickerDataHolder.canCreateTimeRange(minute, threshold)
     ) {
-      timePickerDataHolder.internalTimeRanges.add(getNewTimeRange(minute))
+      timePickerDataHolder.addInternalTimeRangeWith(minute, minutesPerDot, context, thumbRadius)
       invalidate()
     }
-  }
-
-  private fun getNewTimeRange(minute: Int): InternalTimeRange {
-    val startMinute = minute - 3 * minutesPerDot
-    val endMinute = minute + 3 * minutesPerDot
-
-    val startAngle = startMinute.minuteToAngle(minutesPerDot)
-    val endAngle = endMinute.minuteToAngle(minutesPerDot)
-
-    return InternalTimeRange(
-      startMinute,
-      endMinute,
-      startAngle,
-      endAngle,
-      getThumbRectFByAngle(startAngle),
-      getThumbRectFByAngle(endAngle)
-    )
   }
 
   /* --------------------------------------------
@@ -491,7 +469,7 @@ class TimePickerView @JvmOverloads constructor(context: Context, attrs: Attribut
     if (angle in 0f..endAngle) {
       startAngle = angle
       startTime = minute
-      startTimeRectF = getThumbRectFByAngle(angle)
+      startTimeRectF = context.getThumbRectFByAngle(angle, timePickerDataHolder, thumbRadius)
       lastMovedTime = minute
 
       val intersectingRange = timePickerDataHolder.getIntersectingStartTimeRange()
@@ -511,7 +489,7 @@ class TimePickerView @JvmOverloads constructor(context: Context, attrs: Attribut
     if (angle in startAngle..360f) {
       endAngle = angle
       endTime = minute
-      endTimeRectF = getThumbRectFByAngle(angle)
+      endTimeRectF = context.getThumbRectFByAngle(angle, timePickerDataHolder, thumbRadius)
       lastMovedTime = minute
 
       val intersectingRange = timePickerDataHolder.getIntersectingEndTimeRange()
@@ -524,24 +502,30 @@ class TimePickerView @JvmOverloads constructor(context: Context, attrs: Attribut
     }
   }
 
-  private fun getThumbRectFByAngle(angle: Float): RectF {
-    val startRangeCenterPointF = context.getDecartCoordinates(
-      timePickerDataHolder.timeTextWidth,
-      timePickerDataHolder.radius,
-      angle - 90
-    )
-
-    return RectF(
-      startRangeCenterPointF.x - thumbRadius,
-      startRangeCenterPointF.y - thumbRadius,
-      startRangeCenterPointF.x + thumbRadius,
-      startRangeCenterPointF.y + thumbRadius
-    )
-  }
-
   /* ---------------------------------------
   ------------ Click listeners -------------
   --------------------------------------- */
+
+  fun getSelectedTimeRanges(): List<TimeRange> = timePickerDataHolder.getTimeRanges()
+
+  fun setSelectedTimeRanges(timeRanges: List<TimeRange>) {
+    if(timePickerDataHolder.radius == 0.0f) {
+      viewTreeObserver.addOnGlobalLayoutListener(object : OnGlobalLayoutListener {
+        override fun onGlobalLayout() {
+          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            viewTreeObserver.removeOnGlobalLayoutListener(this)
+          } else {
+            viewTreeObserver
+              .removeGlobalOnLayoutListener(this)
+          }
+          timePickerDataHolder.setTimeRanges(timeRanges, minutesPerDot, context, thumbRadius)
+        }
+      })
+    } else {
+      timePickerDataHolder.setTimeRanges(timeRanges, minutesPerDot, context, thumbRadius)
+      invalidate()
+    }
+  }
 
   fun timeRangesObservable(): Observable<List<TimeRange>> = timeRangesSelectedSubject
 }
