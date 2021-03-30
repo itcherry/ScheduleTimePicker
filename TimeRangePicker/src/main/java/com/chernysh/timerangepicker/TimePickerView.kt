@@ -398,6 +398,8 @@ class TimePickerView @JvmOverloads constructor(
   -----------------------------------*/
 
   override fun onTouchEvent(event: MotionEvent): Boolean {
+    if(!isEnabled) return true
+
     var angle = getAngleFromDecart(timePickerDataHolder.center, event.x, event.y)
     var minute = angle.angleToMinute(minutesPerDot)
 
