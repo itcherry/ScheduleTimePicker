@@ -184,6 +184,10 @@ class TimePickerView @JvmOverloads constructor(
     paintCircleSecondary.color = ContextCompat.getColor(context, color)
   }
 
+  /**
+   *   When enable all-day mode it will draw ring for all circle without thumbs.
+   *   Use it carefully. When this mode enabled - you won't have touch handler enabled.
+   */
   fun enableAllDay(doEnable: Boolean) {
     isAllDayEnabled = doEnable
     invalidate()
