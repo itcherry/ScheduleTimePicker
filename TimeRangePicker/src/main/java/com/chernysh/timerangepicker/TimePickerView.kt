@@ -38,6 +38,7 @@ class TimePickerView @JvmOverloads constructor(
   var minutesPerDot = DOT_EACH_N_MINUTES_DEFAULT
   var maxRangesCount = MAX_RANGES_COUNT_DEFAULT
   var isAmPmTextFormat = IS_AM_PM_TIME_FORMAT_DEFAULT
+  private var isAllDayEnabled = false
 
   // Paints
   private val paintArcTimeRange: Paint
@@ -183,6 +184,11 @@ class TimePickerView @JvmOverloads constructor(
     paintCircleSecondary.color = ContextCompat.getColor(context, color)
   }
 
+  fun enableAllDay(doEnable: Boolean) {
+    isAllDayEnabled = doEnable
+    invalidate()
+  }
+
   private fun TypedArray.getCenterTimeAnimator() =
     ValueAnimator.ofInt(255, 0)
       .apply {
@@ -280,7 +286,13 @@ class TimePickerView @JvmOverloads constructor(
     with(canvas) {
       drawSecondaryCircle()
       drawHourNumbers()
-      drawSelectors()
+
+      if(isAllDayEnabled) {
+        drawAllDaySelectors()
+      } else {
+        drawSelectors()
+      }
+
       drawTimeText()
     }
   }
@@ -357,6 +369,15 @@ class TimePickerView @JvmOverloads constructor(
         paintForArc
       )
     }
+  }
+
+  private fun Canvas.drawAllDaySelectors() {
+      drawCircle(
+        timePickerDataHolder.center.x,
+        timePickerDataHolder.center.y,
+        timePickerDataHolder.radius,
+        paintArcTimeRange
+      )
   }
 
   private fun Canvas.drawThumb(
