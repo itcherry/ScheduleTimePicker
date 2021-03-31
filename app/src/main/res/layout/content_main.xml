@@ -13,14 +13,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
-        app:tpv_thumb_radius="12dp"
-        app:tpv_dot_radius="2dp"
-        app:tpv_circle_time_text_size="20sp"
-        app:tpv_center_time_text_size="14sp"
-        app:tpv_range_arc_thickness="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tpv_center_time_text_size="14sp"
+        app:tpv_circle_time_text_size="20sp"
+        app:tpv_dot_radius="2dp"
+        app:tpv_range_arc_thickness="3dp"
+        app:tpv_thumb_radius="12dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
