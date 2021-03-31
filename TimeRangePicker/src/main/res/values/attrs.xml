@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="TimePickerView">
-        <attr name="tpv_thumb_radius" format="integer" />
+        <attr name="tpv_thumb_radius" format="dimension" />
         <attr name="tpv_thumb_color" format="color" />
         <attr name="tpv_range_arc_color" format="color" />
-        <attr name="tpv_range_arc_thickness" format="integer" />
-        <attr name="tpv_center_time_text_size" format="integer" />
+        <attr name="tpv_range_arc_thickness" format="dimension" />
+        <attr name="tpv_center_time_text_size" format="dimension" />
         <attr name="tpv_center_time_text_color" format="color" />
         <attr name="tpv_center_time_text_font" format="reference" />
         <attr name="tpv_center_time_animation_duration_millis" format="integer" />
-        <attr name="tpv_circle_time_text_size" format="integer" />
+        <attr name="tpv_circle_time_text_size" format="dimension" />
         <attr name="tpv_circle_time_text_color" format="color" />
         <attr name="tpv_circle_time_text_font" format="reference" />
         <attr name="tpv_max_ranges_count" format="integer" />
         <attr name="tpv_range_intersection_color" format="color" />
         <attr name="tpv_minutes_per_dot" format="integer" />
-        <attr name="tpv_dot_radius" format="integer" />
+        <attr name="tpv_dot_radius" format="dimension" />
         <attr name="tpv_dot_color" format="color" />
         <attr name="tpv_use_am_pm_time_format" format="boolean" />
     </declare-styleable>

@@ -272,10 +272,10 @@ class TimePickerView @JvmOverloads constructor(
       bottom = (h - paddingBottom).toFloat()
       center = PointF((right + left) / 2.0f, (bottom + top) / 2.0f)
       circleRectF = RectF(
-        left + textRect.width() + 16.dpToPx(context) + smallDotRadius,
-        top + textRect.width() + 16.dpToPx(context) + smallDotRadius,
-        right - textRect.width() - 16.dpToPx(context) - smallDotRadius,
-        bottom - textRect.width() - 16.dpToPx(context) - smallDotRadius
+        left + textRect.width() + 16.dpToPx(context),
+        top + textRect.width() + 16.dpToPx(context),
+        right - textRect.width() - 16.dpToPx(context),
+        bottom - textRect.width() - 16.dpToPx(context)
       )
       timeTextWidth = textRect.width().toFloat()
       timeTextHeight = textRect.height().toFloat()
